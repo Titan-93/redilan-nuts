@@ -109,8 +109,8 @@ const PRODUCTS = [
   { id: 25, name: "چەرەساتی دەرەجە دوو",      category: "mixed",     price: 14000, image: "images/products/mixeds/چەرەساتی-دەرەجە-دوو.png",     description: "چەرەساتی دەرەجە دوو پێک دێ لە پێنچ بابەت فستق و گازۆ و باوی و حەبیەد و تۆوی کودی سپی",            bestSeller: false, featured: false },
 
   // ================= کاجو / CASHEW ==========================================
-  { id: 26, name: "گازووی خاو",                 category: "cashew",    price: 18000, image: "images/products/cashews/گازۆی-خاو.png",          description: "گازۆی خاو ی ١٨٠ بەتام",                       bestSeller: true,  featured: false },
-  { id: 27, name: "کاجووی برژاو",               category: "cashew",    price: 18000, image: "images/products/cashews/گازۆی-برژاو.png",        description: "گازۆی برژاوی ١٨٠ بە خوی برژاو نوێ",                   bestSeller: false, featured: true },
+  { id: 26, name: "گازۆی خاو",                 category: "cashew",    price: 18000, image: "images/products/cashews/گازۆی-خاو.png",          description: "گازۆی خاو ی ١٨٠ بەتام",                       bestSeller: true,  featured: false },
+  { id: 27, name: "گازۆی برژایی",               category: "cashew",    price: 18000, image: "images/products/cashews/گازۆی-برژاو.png",        description: "گازۆی برژاوی ١٨٠ بە خوی برژاو نوێ",                   bestSeller: false, featured: true },
 
   // ================= بادام / ALMOND ========================================
   { id: 28, name: "بادامی خاو ئەمریکی",                 category: "almond",   price: 14000, image: "images/products/almonds/باوی-خاو-ئەمریکی.png",          description: "بادامی ئەمریکی خاو سروشتی و تازە",                       bestSeller: true,  featured: true },
@@ -131,7 +131,7 @@ const PRODUCTS = [
   { id: 39, name: "نۆکی خۆمالی",                category: "chickpeas", price: 5000,  image: "images/products/chickpeas/نۆکی-خۆمالی.png",          description: "نۆکی خۆمالی برژاوی بە خوێ بە تام",                     bestSeller: false, featured: false },
 
   // ================= هەنجیری وشک / DRY FIG =================================
-  { id: 40, name: "هەنجیری وشکی خۆمالی",        category: "fig",       price: 10000, image: "images/products/figs/هەنچەری-خۆمالی.png",       description: "شیرینی سروشتی و نەرمی تایبەت.",               bestSeller: true,  featured: true },
-  { id: 41, name: "هەنجیری وشکی لەتک",            category: "fig",       price: 7000, image: "images/products/figs/هەنچیری-لەتک.png",           description: "هەنجیری لەتکی خۆمالی وشکراوی بە تام و شیرین",                 bestSeller: false, featured: false }
+  { id: 40, name: "هەنجیری وشکراوی خۆمالی",        category: "fig",       price: 10000, image: "images/products/figs/هەنچەری-خۆمالی.png",       description: "شیرینی سروشتی و نەرمی تایبەت.",               bestSeller: true,  featured: true },
+  { id: 41, name: "هەنجیری وشکراوی لەتک",            category: "fig",       price: 7000, image: "images/products/figs/هەنچیری-لەتک.png",           description: "هەنجیری لەتکی خۆمالی وشکراوی بە تام و شیرین",                 bestSeller: false, featured: false }
 
 ];
