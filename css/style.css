@@ -1,0 +1,620 @@
+/* =========================================================================
+   STYLE.CSS  —  ستایلی گشتی ماڵپەڕ (Site design system)
+   =========================================================================
+   ئەگەر دەتەوێت ڕەنگی سەرەکی بگۆڕیت، تەنها نرخەکانی --blue-* لە خوارەوە
+   بگۆڕە. هەموو ماڵپەڕ خۆکارانە نوێ دەبێتەوە.
+
+   To change the main color, just edit the --blue-* values below.
+   The whole site will update automatically.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700;800&family=Vazirmatn:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---- ڕەنگەکان / Colors ---- */
+  --blue-900: #051B3D;
+  --blue-800: #0B3E8C;
+  --blue-700: #124CAB;
+  --blue-600: #2F6FED;
+  --blue-100: #E6EFFF;
+  --blue-50:  #F5F8FF;
+  --ink: #10182B;
+  --ink-soft: #5B6478;
+  --white: #FFFFFF;
+  --cream: #FBF9F4;
+  --border: #E3E9F5;
+  --whatsapp: #25D366;
+  --whatsapp-dark: #1DA851;
+
+  /* ---- شێواز / Shape & shadow ---- */
+  --radius-lg: 26px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --shadow-soft: 0 20px 45px -18px rgba(11, 62, 140, 0.28);
+  --shadow-card: 0 12px 30px -14px rgba(11, 62, 140, 0.18);
+
+  /* ---- فۆنت / Fonts ---- */
+  --font-display: 'Noto Kufi Arabic', 'Vazirmatn', sans-serif;
+  --font-body: 'Vazirmatn', 'Noto Kufi Arabic', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  direction: rtl;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--blue-900);
+  line-height: 1.35;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* =========================================================================
+   لۆدینگ سکرین / Page loader
+   ========================================================================= */
+.page-loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+.page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-spinner {
+  width: 52px; height: 52px;
+  border: 4px solid var(--blue-100);
+  border-top-color: var(--blue-800);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* =========================================================================
+   هێدەر / Header & navigation
+   ========================================================================= */
+.site-header {
+  position: sticky; top: 0; z-index: 500;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow .3s ease, border-color .3s ease;
+}
+.site-header.scrolled {
+  box-shadow: 0 8px 24px -16px rgba(11,62,140,.35);
+  border-color: var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 76px;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 1.15rem;
+  color: var(--blue-900);
+}
+.logo-mark {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: linear-gradient(145deg, var(--blue-100), var(--white));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 1.2rem;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.logo-mark img {
+  width: 100%; height: 100%; object-fit: contain; padding: 4px;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 34px;
+  font-weight: 600; font-size: 0.98rem;
+}
+.nav-links a {
+  color: var(--ink-soft);
+  position: relative;
+  padding: 6px 0;
+  transition: color .25s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--blue-800); }
+.nav-links a::after {
+  content: ""; position: absolute; bottom: 0; right: 0; left: auto;
+  width: 0; height: 2px; background: var(--blue-800);
+  transition: width .25s ease;
+}
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+.nav-actions { display: flex; align-items: center; gap: 14px; }
+
+.nav-cart-btn, .floating-cart-btn {
+  position: relative;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--blue-50); color: var(--blue-800);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .2s ease, background .2s ease;
+}
+.nav-cart-btn:hover, .floating-cart-btn:hover { background: var(--blue-100); transform: translateY(-2px); }
+.cart-badge {
+  position: absolute; top: -4px; left: -4px;
+  min-width: 20px; height: 20px; padding: 0 5px;
+  background: var(--blue-800); color: var(--white);
+  border-radius: 50%; font-size: 0.7rem; font-weight: 700;
+  display: none; align-items: center; justify-content: center;
+  border: 2px solid var(--white);
+}
+.pulse { animation: cartPulse .45s ease; }
+@keyframes cartPulse {
+  0% { transform: scale(1); } 40% { transform: scale(1.22); } 100% { transform: scale(1); }
+}
+
+.menu-toggle {
+  display: none; flex-direction: column; gap: 5px; width: 30px;
+}
+.menu-toggle span {
+  height: 2px; background: var(--blue-900); border-radius: 2px;
+  transition: transform .3s ease, opacity .3s ease;
+}
+.menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  position: fixed; top: 76px; right: 0; left: 0; bottom: 0; z-index: 400;
+  background: var(--white);
+  transform: translateY(-12px); opacity: 0; visibility: hidden;
+  transition: all .3s ease;
+  padding: 30px 24px;
+}
+.mobile-menu.open { transform: translateY(0); opacity: 1; visibility: visible; }
+.mobile-menu a {
+  display: block; padding: 16px 0; font-size: 1.15rem; font-weight: 700;
+  border-bottom: 1px solid var(--border); color: var(--ink);
+}
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: flex; }
+  .mobile-menu { display: block; }
+}
+
+/* =========================================================================
+   دووگمەکان / Buttons
+   ========================================================================= */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 26px; border-radius: 999px;
+  font-weight: 700; font-size: 0.98rem;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--blue-800); color: var(--white);
+  box-shadow: 0 14px 30px -10px rgba(11,62,140,.55);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -8px rgba(11,62,140,.6); }
+.btn-outline {
+  background: var(--white); color: var(--blue-800);
+  border: 1.5px solid var(--blue-800);
+}
+.btn-outline:hover { background: var(--blue-50); transform: translateY(-3px); }
+.btn-add {
+  background: var(--blue-900); color: var(--white);
+  padding: 10px 18px; font-size: 0.88rem; border-radius: 999px;
+}
+.btn-add:hover { background: var(--blue-700); transform: translateY(-2px); }
+.btn-whatsapp {
+  background: var(--whatsapp); color: var(--white);
+  width: 100%; padding: 16px; border-radius: var(--radius-sm);
+  font-size: 1.05rem;
+}
+.btn-whatsapp:hover:not(:disabled) { background: var(--whatsapp-dark); }
+.btn-whatsapp:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* =========================================================================
+   هیرۆ / Hero section
+   ========================================================================= */
+.hero {
+  position: relative;
+  padding: 80px 0 110px;
+  background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 100%);
+  overflow: hidden;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 50px;
+  align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue-100); color: var(--blue-800);
+  padding: 8px 18px; border-radius: 999px;
+  font-weight: 700; font-size: 0.85rem; margin-bottom: 22px;
+}
+.hero-title {
+  font-size: clamp(2.3rem, 4.2vw, 3.6rem);
+  font-weight: 800; margin-bottom: 22px;
+}
+.hero-title span { color: var(--blue-700); }
+.hero-desc {
+  font-size: 1.12rem; color: var(--ink-soft); max-width: 520px; margin-bottom: 36px;
+}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.hero-visual {
+  position: relative; height: 440px;
+}
+.hero-blob {
+  position: absolute; inset: 0; margin: auto;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--blue-100), var(--blue-50));
+}
+.hero-blob-logo {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  max-width: 220px;
+  object-fit: contain;
+}
+.hero-float-card {
+  position: absolute; background: var(--white); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft); padding: 16px 20px;
+  display: flex; align-items: center; gap: 12px;
+  animation: floatY 5s ease-in-out infinite;
+  font-weight: 700; font-size: 0.92rem;
+}
+.hero-float-card .emoji { font-size: 1.6rem; }
+.hero-float-card.c1 { top: 10%; right: 8%; animation-delay: 0s; }
+.hero-float-card.c2 { bottom: 16%; right: 0%; animation-delay: 1.2s; }
+.hero-float-card.c3 { bottom: 6%; left: 6%; animation-delay: 2.1s; }
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); }
+}
+
+/* signature scattered nut-icon divider between sections */
+.nut-divider {
+  display: flex; justify-content: center; gap: 26px;
+  padding: 34px 0; opacity: 0.55; font-size: 1.3rem;
+  letter-spacing: 8px;
+}
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { height: 320px; order: -1; }
+}
+
+/* =========================================================================
+   بەشەکان / Generic section styles
+   ========================================================================= */
+.section { padding: 90px 0; }
+.section-alt { background: var(--blue-50); }
+.section-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 44px; gap: 20px; flex-wrap: wrap;
+}
+.section-eyebrow {
+  color: var(--blue-700); font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; display: block;
+}
+.section-title { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; }
+.section-link { font-weight: 700; color: var(--blue-800); }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* =========================================================================
+   کاتیگۆری / Category grid
+   ========================================================================= */
+.category-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+}
+.category-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 28px 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-align: center; font-weight: 700;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.category-card:hover {
+  transform: translateY(-6px); box-shadow: var(--shadow-card); border-color: var(--blue-100);
+}
+.category-icon { font-size: 2rem; }
+.category-label { color: var(--ink); font-size: 0.95rem; }
+
+@media (max-width: 900px) { .category-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* =========================================================================
+   کارتی بەرهەم / Product cards & grid
+   ========================================================================= */
+.products-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px;
+}
+@media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .products-grid { grid-template-columns: 1fr; } }
+
+.product-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-md); overflow: hidden;
+  transition: transform .28s ease, box-shadow .28s ease;
+  display: flex; flex-direction: column;
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+.product-card-image { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--blue-50); }
+.product-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.product-card:hover .product-card-image img { transform: scale(1.06); }
+.product-card-tag {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(255,255,255,0.92); color: var(--blue-800);
+  font-size: 0.72rem; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+}
+.product-card-body { padding: 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.product-card-name { font-size: 1.02rem; font-weight: 700; }
+.product-card-desc { font-size: 0.86rem; color: var(--ink-soft); flex: 1; }
+.product-card-footer {
+  margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.product-card-price { display: flex; flex-direction: column; }
+.price-value { font-weight: 800; color: var(--blue-900); font-size: 1.02rem; }
+.price-unit { font-size: 0.72rem; color: var(--ink-soft); }
+
+/* =========================================================================
+   فلتەر و گەڕان / Filters & search (products page)
+   ========================================================================= */
+.products-toolbar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 18px; margin-bottom: 30px;
+}
+.search-box {
+  position: relative; flex: 1; min-width: 240px; max-width: 380px;
+}
+.search-box input {
+  width: 100%; padding: 14px 46px 14px 16px; border-radius: 999px;
+  border: 1.5px solid var(--border); font-family: inherit; font-size: 0.95rem;
+  background: var(--white); transition: border-color .2s ease;
+}
+.search-box input:focus { outline: none; border-color: var(--blue-600); }
+.search-box svg { position: absolute; top: 50%; right: 16px; transform: translateY(-50%); color: var(--ink-soft); }
+
+.filter-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+.filter-chip {
+  padding: 10px 18px; border-radius: 999px; border: 1.5px solid var(--border);
+  font-weight: 600; font-size: 0.88rem; color: var(--ink-soft);
+  background: var(--white); transition: all .2s ease;
+}
+.filter-chip:hover { border-color: var(--blue-600); color: var(--blue-800); }
+.filter-chip.active { background: var(--blue-800); border-color: var(--blue-800); color: var(--white); }
+
+.empty-state {
+  display: none; text-align: center; padding: 70px 20px; color: var(--ink-soft);
+}
+.empty-state .emoji { font-size: 3rem; margin-bottom: 14px; }
+
+/* =========================================================================
+   بۆچی ئێمە / Why choose us
+   ========================================================================= */
+.why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.why-card {
+  background: var(--white); border-radius: var(--radius-md); padding: 30px 24px;
+  border: 1px solid var(--border); text-align: center;
+}
+.why-icon {
+  width: 58px; height: 58px; border-radius: 16px; margin: 0 auto 16px;
+  background: var(--blue-100); display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+}
+.why-title { font-weight: 700; margin-bottom: 8px; font-size: 1.02rem; }
+.why-desc { font-size: 0.88rem; color: var(--ink-soft); }
+@media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .why-grid { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   ڕای کڕیاران / Testimonials
+   ========================================================================= */
+.review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.review-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 28px; box-shadow: var(--shadow-card);
+}
+.review-stars { color: #F5A623; margin-bottom: 14px; letter-spacing: 3px; }
+.review-text { color: var(--ink-soft); margin-bottom: 18px; font-size: 0.95rem; }
+.review-author { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+.review-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--blue-100); display: flex; align-items: center; justify-content: center;
+  color: var(--blue-800); font-weight: 800;
+}
+@media (max-width: 900px) { .review-grid { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   پەیوەندی / Contact section & page
+   ========================================================================= */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+}
+.contact-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 34px; box-shadow: var(--shadow-card);
+}
+.contact-row {
+  display: flex; align-items: center; gap: 16px; padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.contact-row:last-child { border-bottom: none; }
+.contact-row-icon {
+  width: 46px; height: 46px; border-radius: 14px; flex-shrink: 0;
+  background: var(--blue-100); color: var(--blue-800);
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+}
+.contact-row-label { font-size: 0.82rem; color: var(--ink-soft); }
+.contact-row-value { font-weight: 700; }
+.contact-map { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); height: 100%; min-height: 340px; }
+.contact-map iframe { width: 100%; height: 100%; min-height: 340px; border: 0; }
+.social-row { display: flex; gap: 12px; margin-top: 24px; }
+.social-btn {
+  width: 48px; height: 48px; border-radius: 50%; background: var(--blue-50);
+  display: flex; align-items: center; justify-content: center; color: var(--blue-800);
+  transition: all .2s ease;
+}
+.social-btn:hover { background: var(--blue-800); color: var(--white); transform: translateY(-3px); }
+.social-btn svg { display: block; }
+
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   فووتەر / Footer
+   ========================================================================= */
+.site-footer { background: var(--blue-900); color: rgba(255,255,255,0.82); padding: 64px 0 28px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 46px; }
+.footer-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; color: var(--white); font-size: 1.1rem; margin-bottom: 14px; }
+.footer-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); max-width: 300px; }
+.footer-title { color: var(--white); font-weight: 700; margin-bottom: 16px; font-size: 0.98rem; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { font-size: 0.9rem; color: rgba(255,255,255,0.65); transition: color .2s ease; }
+.footer-links a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.12); padding-top: 26px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  font-size: 0.85rem; color: rgba(255,255,255,0.55);
+}
+@media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   دووگمەی واتساپی فلۆتینگ / Floating WhatsApp button
+   ========================================================================= */
+.whatsapp-float {
+  position: fixed; bottom: 26px; left: 26px; z-index: 300;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--whatsapp); color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.7rem; box-shadow: 0 14px 30px -8px rgba(37,211,102,.6);
+  transition: transform .25s ease;
+}
+.whatsapp-float:hover { transform: scale(1.08); }
+
+/* دووگمەی گەڕانەوە بۆ سەرەوە / Back to top button */
+.back-to-top {
+  position: fixed; bottom: 26px; right: 26px; z-index: 300;
+  width: 50px; height: 50px; border-radius: 50%;
+  background: var(--white); color: var(--blue-800); border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-card);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: all .3s ease;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* floating cart button shown on mobile bottom (products page) */
+.floating-cart-btn.mobile-only { display: none; }
+@media (max-width: 760px) {
+  .floating-cart-btn.mobile-only {
+    display: flex; position: fixed; bottom: 26px; right: 90px; z-index: 300;
+    background: var(--blue-800); color: var(--white); box-shadow: var(--shadow-soft);
+  }
+}
+
+/* =========================================================================
+   درۆوەری سەبەتە / Cart drawer
+   ========================================================================= */
+.cart-overlay {
+  position: fixed; inset: 0; background: rgba(5,27,61,0.45); z-index: 600;
+  opacity: 0; visibility: hidden; transition: all .3s ease;
+}
+.cart-overlay.visible { opacity: 1; visibility: visible; }
+
+.cart-drawer {
+  position: fixed; top: 0; left: -420px; width: 100%; max-width: 420px; height: 100%;
+  background: var(--white); z-index: 700;
+  box-shadow: 30px 0 60px rgba(0,0,0,0.15);
+  display: flex; flex-direction: column;
+  transition: left .35s ease;
+}
+.cart-drawer.open { left: 0; }
+.cart-drawer-header {
+  padding: 22px 24px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cart-drawer-title { font-weight: 800; font-size: 1.1rem; }
+.close-btn {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--blue-50);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--ink-soft);
+}
+.cart-drawer-body { flex: 1; overflow-y: auto; padding: 20px 24px; }
+.cart-item {
+  display: flex; align-items: center; gap: 12px; padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-weight: 700; font-size: 0.94rem; margin-bottom: 4px; }
+.cart-item-price { font-size: 0.8rem; color: var(--ink-soft); }
+.cart-item-qty { display: flex; align-items: center; gap: 10px; }
+.qty-btn {
+  width: 28px; height: 28px; border-radius: 8px; background: var(--blue-50);
+  color: var(--blue-800); font-weight: 800; display: flex; align-items: center; justify-content: center;
+}
+.qty-btn:hover { background: var(--blue-100); }
+.qty-value { min-width: 18px; text-align: center; font-weight: 700; }
+.cart-item-remove { color: #C0435A; font-size: 0.95rem; padding: 4px; }
+.empty-cart {
+  text-align: center; padding: 60px 10px; color: var(--ink-soft);
+}
+.empty-cart .emoji { font-size: 2.6rem; margin-bottom: 12px; }
+
+.cart-drawer-footer { padding: 20px 24px; border-top: 1px solid var(--border); }
+.cart-total-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 800; font-size: 1.05rem; margin-bottom: 16px;
+}
+.customer-field {
+  width: 100%; padding: 12px 14px; margin-bottom: 10px;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 0.9rem;
+}
+.customer-field:focus { outline: none; border-color: var(--blue-600); }
+
+/* =========================================================================
+   لاپەڕەی ناوەکی / Generic inner page hero (products/contact pages)
+   ========================================================================= */
+.page-hero {
+  background: linear-gradient(180deg, var(--blue-50), var(--white));
+  padding: 56px 0 40px; text-align: center;
+}
+.page-hero h1 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 10px; }
+.page-hero p { color: var(--ink-soft); }
+
+/* =========================================================================
+   ڕیسپۆنسیڤ گشتی / Misc responsive tweaks
+   ========================================================================= */
+@media (max-width: 760px) {
+  .section { padding: 60px 0; }
+  .hero { padding: 50px 0 70px; }
+  .contact-card, .cart-drawer { padding-left: 18px; }
+}

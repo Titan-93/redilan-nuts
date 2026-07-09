@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>چەرەساتی رێ دیلان</title>
+  <meta name="description" content="باشترین فستق، کاجو، بادام، گوێز و بەروبووی وشک بە کوالێتی بەرز و نرخی گونجاو — داواکاریت بنێرە ڕاستەوخۆ بۆ واتساپ.">
+  <link rel="icon" type="image/png" href="images/logo-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- لۆدینگ سکرین / Page loader -->
+  <div class="page-loader" id="pageLoader"><div class="loader-spinner"></div></div>
+
+  <!-- ======================= هێدەر / HEADER ======================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ"></span>
+        <span>چەرەساتی رێ دیلان</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="active">ماڵەوە</a>
+        <a href="berhemakan.html">بەرهەمەکان</a>
+        <a href="index.html#why">بۆچی ئێمە</a>
+        <a href="peywendi.html">پەیوەندی</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-cart-btn open-cart-btn" aria-label="سەبەتەی داواکاری">
+          🛒<span class="cart-badge">0</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="مێنیو"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- مێنیوی مۆبایل / Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">ماڵەوە</a>
+    <a href="berhemakan.html">بەرهەمەکان</a>
+    <a href="index.html#why">بۆچی ئێمە</a>
+    <a href="peywendi.html">پەیوەندی</a>
+  </div>
+
+  <!-- ======================= هیرۆ / HERO ======================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="hero-eyebrow">🌿 تازە و سروشتی ١٠٠٪</span>
+        <h1 class="hero-title">باشترین <span>چەرەسات و میوەی هیشکراو</span> لە دەرگای ماڵەوە</h1>
+        <p class="hero-desc">فستق، کاجو، بادام، گوێز، کشمیش و زۆر جۆری تر — هەڵبژاردەیەکی تایبەت بە کوالێتی بەرز. داواکاریت بکە و بە یەک کلیک بینێرە بۆ واتساپ.</p>
+        <div class="hero-actions">
+          <a href="berhemakan.html" class="btn btn-primary">بینینی بەرهەمەکان</a>
+          <a href="peywendi.html" class="btn btn-outline">پەیوەندیمان پێوە بکە</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-blob">
+          <img src="images/logo-icon.png" alt="لۆگۆی فرۆشگا" class="hero-blob-logo">
+        </div>
+        <div class="hero-float-card c1"><span class="emoji">🥜</span> فستقی ئەکبەری</div>
+        <div class="hero-float-card c2"><span class="emoji">🌰</span> گازووی ١٨٠</div>
+        <div class="hero-float-card c3"><span class="emoji">🍇</span> مێوژی شیرین</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nut-divider" aria-hidden="true">🥜 🌰 🌱 🍇 🌿 🌕 🥣 🍐</div>
+
+  <!-- ======================= پۆلەکان / CATEGORIES ======================= -->
+  <section class="section reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">پۆلەکان</span>
+          <h2 class="section-title">گەڕان بەپێی جۆر</h2>
+        </div>
+        <a href="berhemakan.html" class="section-link">هەموو بەرهەمەکان ←</a>
+      </div>
+      <div class="category-grid" id="categoryGrid"></div>
+    </div>
+  </section>
+
+  <!-- ======================= بەرهەمە تایبەتەکان / FEATURED ======================= -->
+  <section class="section section-alt reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">هەڵبژاردەی ئێمە</span>
+          <h2 class="section-title">بەرهەمە تایبەتەکان</h2>
+        </div>
+        <a href="berhemakan.html" class="section-link">بینینی زیاتر ←</a>
+      </div>
+      <div class="products-grid" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <!-- ======================= زۆرترین فرۆشراو / BEST SELLERS ======================= -->
+  <section class="section reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">دڵخوازی کڕیاران</span>
+          <h2 class="section-title">زۆرترین فرۆشراوەکان</h2>
+        </div>
+        <a href="berhemakan.html" class="section-link">بینینی زیاتر ←</a>
+      </div>
+      <div class="products-grid" id="bestSellerGrid"></div>
+    </div>
+  </section>
+
+  <!-- ======================= بۆچی ئێمە / WHY CHOOSE US ======================= -->
+  <section class="section section-alt reveal" id="why">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">جیاوازی ئێمە</span>
+          <h2 class="section-title">بۆچی ئێمە هەڵبژێریت؟</h2>
+        </div>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🌿</div>
+          <h3 class="why-title">کوالێتی سروشتی</h3>
+          <p class="why-desc">هەموو بەرهەمەکانمان دەستنیشانکراون بۆ تازەیی و کوالێتی بەرز.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🚚</div>
+          <h3 class="why-title">گەیاندنی خێرا</h3>
+          <p class="why-desc">گەیاندن بۆ هەموو شوێنێک لە شارەکە بە خێرایی.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💳</div>
+          <h3 class="why-title">نرخی گونجاو</h3>
+          <p class="why-desc">باشترین نرخ لەگەڵ پاراستنی کوالێتی.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💬</div>
+          <h3 class="why-title">داواکاری ئاسان</h3>
+          <p class="why-desc">داواکاریت بنێرە ڕاستەوخۆ لە ڕێگەی واتساپ، بەبێ هیچ ئاڵۆزییەک.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= ڕای کڕیاران / TESTIMONIALS ======================= -->
+  <section class="section reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">بیروڕا</span>
+          <h2 class="section-title">ڕای کڕیارانمان</h2>
+        </div>
+      </div>
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"کوالێتی فستقەکان زۆر باش بوو، گەیاندنیش خێرا بوو. سوپاس بۆ خزمەتگوزارییە باشەکە."</p>
+          <div class="review-author"><span class="review-avatar">ئ</span> ئاراس محمد</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"هەمیشە لێرەوە داواکاری دەکەم، تامەکان زۆر ڕەسەنن و نرخیش گونجاوە."</p>
+          <div class="review-author"><span class="review-avatar">س</span> سارا ئەحمەد</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"داواکاری لە ڕێگەی واتساپ زۆر ئاسانە، پێشنیارتان دەکەم بۆ هەموو کەسێک."</p>
+          <div class="review-author"><span class="review-avatar">ک</span> کاروان ڕەشید</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= پەیوەندی / CONTACT PREVIEW ======================= -->
+  <section class="section section-alt reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">لەگەڵمان بین</span>
+          <h2 class="section-title">پەیوەندیمان پێوە بکە</h2>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-row">
+            <div class="contact-row-icon">📞</div>
+            <div><div class="contact-row-label">ژمارەی تەلەفۆن</div><div class="contact-row-value" id="phoneDisplayHome"></div></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-icon">📍</div>
+            <div><div class="contact-row-label">شوێن</div><div class="contact-row-value" id="addressDisplayHome"></div></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-icon">💬</div>
+            <div><div class="contact-row-label">واتساپ</div><div class="contact-row-value">بۆ ناردنی داواکاری کلیک بکە لەسەر دووگمەی سەوز</div></div>
+          </div>
+          <div class="social-row">
+            <a class="social-btn" id="facebookLinkHome" target="_blank" aria-label="فەیسبووک">📘</a>
+            <a class="social-btn" id="instagramLinkHome" target="_blank" aria-label="ئینستاگرام">📸</a>
+            <a class="social-btn" id="tiktokLinkHome" target="_blank" aria-label="تیک‌تۆک">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82c-1.02-.9-1.6-2.18-1.6-3.55h-3.1v13.14c0 1.51-1.23 2.74-2.74 2.74a2.74 2.74 0 1 1 0-5.48c.27 0 .53.04.78.11V9.66a5.83 5.83 0 0 0-.78-.05A5.84 5.84 0 0 0 3.32 15.4a5.84 5.84 0 0 0 5.84 5.84 5.84 5.84 0 0 0 5.84-5.84V9.09a8.4 8.4 0 0 0 4.9 1.57V7.56c-1.13 0-2.2-.35-3.3-1.74z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="contact-map">
+          <iframe src="" id="mapFrameHome" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= فووتەر / FOOTER ======================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ"></span> چەرەساتی رێ دیلان</div>
+          <p class="footer-desc">باشترین فستق، کاجو، بادام و بەروبووی وشک بە کوالێتی بەرز و تامی ڕەسەن.</p>
+        </div>
+        <div>
+          <div class="footer-title">لینکەکان</div>
+          <ul class="footer-links">
+            <li><a href="index.html">ماڵەوە</a></li>
+            <li><a href="berhemakan.html">بەرهەمەکان</a></li>
+            <li><a href="peywendi.html">پەیوەندی</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">پۆلەکان</div>
+          <ul class="footer-links">
+            <li><a href="berhemakan.html?cat=pistachio">فستق</a></li>
+            <li><a href="berhemakan.html?cat=walnut">گوێز</a></li>
+            <li><a href="berhemakan.html?cat=almond">بادام</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">پەیوەندی</div>
+          <ul class="footer-links">
+            <li id="footerPhone"></li>
+            <li id="footerAddress"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 چەرەساتی رێ دیلان. هەموو مافێک پارێزراوە.</span>
+        <span>دروستکراوە بە ❤️ بۆ کڕیارانی خۆشەویست</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================= درۆوەری سەبەتە / CART DRAWER ======================= -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <span class="cart-drawer-title">🛒 لیستی داواکاری</span>
+      <button class="close-btn" id="closeCartBtn">✕</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div id="cartItemsList"></div>
+      <div class="empty-cart" id="cartEmptyMessage">
+        <div class="emoji">🛍️</div>
+        <p>لیستی داواکاریت بەتاڵە.<br>سەیری بەرهەمەکانمان بکە!</p>
+      </div>
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row"><span>کۆی گشتی</span><span id="cartTotalPrice">0 دینار</span></div>
+      <input type="text" class="customer-field" id="customerName" placeholder="ناوت بنووسە">
+      <input type="tel" class="customer-field" id="customerPhone" placeholder="ژمارەی تەلەفۆن">
+      <input type="text" class="customer-field" id="customerAddress" placeholder="ناونیشانی گەیاندن">
+      <button class="btn btn-whatsapp" id="sendOrderBtn" disabled>ناردنی داواکاری بە واتساپ 💬</button>
+    </div>
+  </aside>
+
+  <!-- دووگمە فلۆتینگەکان / Floating buttons -->
+  <a href="#" class="whatsapp-float open-cart-btn" aria-label="کردنەوەی سەبەتە">💬</a>
+  <button class="back-to-top" id="backToTopBtn" aria-label="گەڕانەوە بۆ سەرەوە">↑</button>
+
+  <script src="js/config.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // پڕکردنەوەی زانیاری پەیوەندی لە config.js / Fill contact info from config.js
+    document.getElementById("phoneDisplayHome").textContent = STORE_CONFIG.phoneDisplay;
+    document.getElementById("addressDisplayHome").textContent = STORE_CONFIG.address;
+    document.getElementById("facebookLinkHome").href = STORE_CONFIG.facebookUrl;
+    document.getElementById("instagramLinkHome").href = STORE_CONFIG.instagramUrl;
+    document.getElementById("tiktokLinkHome").href = STORE_CONFIG.tiktokUrl;
+    document.getElementById("mapFrameHome").src = STORE_CONFIG.mapEmbedUrl;
+    document.getElementById("footerPhone").textContent = "📞 " + STORE_CONFIG.phoneDisplay;
+    document.getElementById("footerAddress").textContent = "📍 " + STORE_CONFIG.address;
+  </script>
+</body>
+</html>

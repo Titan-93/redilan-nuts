@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پەیوەندی | فرۆشگای گوێز و بەروبووی وشک</title>
+  <meta name="description" content="پەیوەندیمان پێوە بکە لە ڕێگەی واتساپ، تەلەفۆن، فەیسبووک یان ئینستاگرام.">
+  <link rel="icon" type="image/png" href="images/logo-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="page-loader" id="pageLoader"><div class="loader-spinner"></div></div>
+
+  <!-- ======================= هێدەر / HEADER ======================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ"></span>
+        <span>فرۆشگای گوێز</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">ماڵەوە</a>
+        <a href="berhemakan.html">بەرهەمەکان</a>
+        <a href="index.html#why">بۆچی ئێمە</a>
+        <a href="peywendi.html" class="active">پەیوەندی</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-cart-btn open-cart-btn" aria-label="سەبەتەی داواکاری">
+          🛒<span class="cart-badge">0</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="مێنیو"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">ماڵەوە</a>
+    <a href="berhemakan.html">بەرهەمەکان</a>
+    <a href="index.html#why">بۆچی ئێمە</a>
+    <a href="peywendi.html">پەیوەندی</a>
+  </div>
+
+  <!-- ======================= سەرپەڕەی لاپەڕە / PAGE HERO ======================= -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>پەیوەندیمان پێوە بکە</h1>
+      <p>هەر پرسیارێکت هەبوو یان دەتەوێت داواکاری بکەیت، ئێمە لێرەین بۆ یارمەتیدانت.</p>
+    </div>
+  </section>
+
+  <!-- ======================= پەیوەندی / CONTACT ======================= -->
+  <section class="section" style="padding-top:50px">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-row">
+            <div class="contact-row-icon">💬</div>
+            <div>
+              <div class="contact-row-label">واتساپ</div>
+              <a class="contact-row-value" id="whatsappLink" target="_blank">ناردنی پەیام لە ڕێگەی واتساپ</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-icon">📞</div>
+            <div><div class="contact-row-label">ژمارەی تەلەفۆن</div><div class="contact-row-value" id="phoneDisplay"></div></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-icon">📍</div>
+            <div><div class="contact-row-label">شوێنی فرۆشگا</div><div class="contact-row-value" id="addressDisplay"></div></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-icon">🕒</div>
+            <div><div class="contact-row-label">کاتەکانی کارکردن</div><div class="contact-row-value">هەمووڕۆژێک: ٧ی بەیانی — ٦ی ئێوارە</div></div>
+          </div>
+          <div class="social-row">
+            <a class="social-btn" id="facebookLink" target="_blank" aria-label="فەیسبووک">📘</a>
+            <a class="social-btn" id="instagramLink" target="_blank" aria-label="ئینستاگرام">📸</a>
+            <a class="social-btn" id="tiktokLink" target="_blank" aria-label="تیک‌تۆک">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82c-1.02-.9-1.6-2.18-1.6-3.55h-3.1v13.14c0 1.51-1.23 2.74-2.74 2.74a2.74 2.74 0 1 1 0-5.48c.27 0 .53.04.78.11V9.66a5.83 5.83 0 0 0-.78-.05A5.84 5.84 0 0 0 3.32 15.4a5.84 5.84 0 0 0 5.84 5.84 5.84 5.84 0 0 0 5.84-5.84V9.09a8.4 8.4 0 0 0 4.9 1.57V7.56c-1.13 0-2.2-.35-3.3-1.74z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="contact-map">
+          <iframe src="" id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= فووتەر / FOOTER ======================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ"></span> فرۆشگای گوێز</div>
+          <p class="footer-desc">باشترین فستق، کاجو، بادام و بەروبووی وشک بە کوالێتی بەرز و تامی ڕەسەن.</p>
+        </div>
+        <div>
+          <div class="footer-title">لینکەکان</div>
+          <ul class="footer-links">
+            <li><a href="index.html">ماڵەوە</a></li>
+            <li><a href="berhemakan.html">بەرهەمەکان</a></li>
+            <li><a href="peywendi.html">پەیوەندی</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">پۆلەکان</div>
+          <ul class="footer-links">
+            <li><a href="berhemakan.html?cat=pistachio">فستق</a></li>
+            <li><a href="berhemakan.html?cat=walnut">گوێز</a></li>
+            <li><a href="berhemakan.html?cat=almond">بادام</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">پەیوەندی</div>
+          <ul class="footer-links">
+            <li id="footerPhone"></li>
+            <li id="footerAddress"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 فرۆشگای گوێز. هەموو مافێک پارێزراوە.</span>
+        <span>دروستکراوە بە ❤️ بۆ کڕیارانی خۆشەویست</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================= درۆوەری سەبەتە / CART DRAWER ======================= -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <span class="cart-drawer-title">🛒 لیستی داواکاری</span>
+      <button class="close-btn" id="closeCartBtn">✕</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div id="cartItemsList"></div>
+      <div class="empty-cart" id="cartEmptyMessage">
+        <div class="emoji">🛍️</div>
+        <p>لیستی داواکاریت بەتاڵە.<br>سەیری بەرهەمەکانمان بکە!</p>
+      </div>
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row"><span>کۆی گشتی</span><span id="cartTotalPrice">0 دینار</span></div>
+      <input type="text" class="customer-field" id="customerName" placeholder="ناوت بنووسە">
+      <input type="tel" class="customer-field" id="customerPhone" placeholder="ژمارەی تەلەفۆن">
+      <input type="text" class="customer-field" id="customerAddress" placeholder="ناونیشانی گەیاندن">
+      <button class="btn btn-whatsapp" id="sendOrderBtn" disabled>ناردنی داواکاری بە واتساپ 💬</button>
+    </div>
+  </aside>
+
+  <a href="#" class="whatsapp-float open-cart-btn" aria-label="کردنەوەی سەبەتە">💬</a>
+  <button class="back-to-top" id="backToTopBtn" aria-label="گەڕانەوە بۆ سەرەوە">↑</button>
+
+  <script src="js/config.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById("phoneDisplay").textContent = STORE_CONFIG.phoneDisplay;
+    document.getElementById("addressDisplay").textContent = STORE_CONFIG.address;
+    document.getElementById("facebookLink").href = STORE_CONFIG.facebookUrl;
+    document.getElementById("instagramLink").href = STORE_CONFIG.instagramUrl;
+    document.getElementById("tiktokLink").href = STORE_CONFIG.tiktokUrl;
+    document.getElementById("mapFrame").src = STORE_CONFIG.mapEmbedUrl;
+    document.getElementById("whatsappLink").href = "https://wa.me/" + STORE_CONFIG.whatsappNumber;
+    document.getElementById("footerPhone").textContent = "📞 " + STORE_CONFIG.phoneDisplay;
+    document.getElementById("footerAddress").textContent = "📍 " + STORE_CONFIG.address;
+  </script>
+</body>
+</html>
