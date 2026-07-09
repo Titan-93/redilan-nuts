@@ -68,10 +68,10 @@ const STORE_CONFIG = {
     { key: "seeds",      label: "تۆو",             icon: "🌻" },
     { key: "sumac",      label: "سماق",            icon: "🌿" },
     { key: "mixed",      label: "چەرەسی تێکەلاو",   icon: "🥣" },
-    { key: "cashew",     label: "کاجو",            icon: "🌰" },
-    { key: "almond",     label: "بادام",           icon: "🌱" },
+    { key: "cashew",     label: "گازۆ",            icon: "🌰" },
+    { key: "almond",     label: "بادەم",           icon: "🌱" },
     { key: "walnut",     label: "گوێز",            icon: "🌳" },
     { key: "chickpeas",  label: "نۆک",             icon: "🌕" },
-    { key: "fig",        label: "هەنجیری وشک",     icon: "🍐" }
+    { key: "fig",        label: "هەنجیری وشکراو",     icon: "🍐" }
   ]
 };
