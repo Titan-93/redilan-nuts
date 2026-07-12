@@ -69,9 +69,10 @@ const STORE_CONFIG = {
     { key: "sumac",      label: "سماق",            icon: "🌿" },
     { key: "mixed",      label: "چەرەسی تێکەلاو",   icon: "🥣" },
     { key: "cashew",     label: "گازۆ",            icon: "🌰" },
-    { key: "almond",     label: "بادەم",           icon: "🌱" },
+    { key: "almond",     label: "بادام",           icon: "🌱" },
     { key: "walnut",     label: "گوێز",            icon: "🌳" },
     { key: "chickpeas",  label: "نۆک",             icon: "🌕" },
-    { key: "fig",        label: "هەنجیری وشکراو",     icon: "🍐" }
+    { key: "dry fruit",        label: "میوەی وشکراو",     icon: "🍐" },
+    { key: "qazwan",        label: "قەزوان",     icon: "🥦" }
   ]
 };
