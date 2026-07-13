@@ -198,6 +198,7 @@ h1, h2, h3, h4 {
   display: block; padding: 16px 0; font-size: 1.15rem; font-weight: 700;
   border-bottom: 1px solid var(--border); color: var(--ink);
 }
+.mobile-menu a.active { color: var(--blue-800); }
 
 @media (max-width: 860px) {
   .nav-links { display: none; }
