@@ -187,6 +187,30 @@ function setupSearch() {
 }
 
 // -------------------------------------------------------------------------
+// دیاریکردنی بەستەری چالاک / Auto-detect the active nav link
+// -------------------------------------------------------------------------
+// لە جیاتی نووسینی class="active" بە دەست لەناو هەر پەڕەیەکدا (کە زۆر ئاسانە
+// لەبیر بکرێت یان هەڵە تێدا بێت)، لێرەدا خۆکارانە دەستنیشان دەکرێت کام بەستەر
+// دەبێت "چالاک" پیشان بدرێت، بۆ هەم مێنیوی سەرەکی و هەم مێنیوی مۆبایل.
+//
+// Instead of hardcoding class="active" by hand on each page (easy to forget
+// or get out of sync), this automatically figures out which nav link should
+// be marked active, for both the desktop nav and the mobile menu.
+function setActiveNavLink() {
+  const currentPage = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav-links a, .mobile-menu a").forEach(link => {
+    const href = link.getAttribute("href");
+    // بەستەرەکانی وەک index.html#why بەشێکی پەڕەکەن، نەک پەڕەیەکی جیاواز،
+    // بۆیە هەرگیز نابێت وەک "چالاک" نیشانە بکرێن.
+    // Links like index.html#why point to a section of a page, not a
+    // distinct page, so they should never be marked "active".
+    if (href.includes("#")) return;
+    const linkPage = href.split("/").pop();
+    link.classList.toggle("active", linkPage === currentPage);
+  });
+}
+
+// -------------------------------------------------------------------------
 // مێنیوی مۆبایل / Mobile menu
 // -------------------------------------------------------------------------
 function setupMobileMenu() {
@@ -265,6 +289,7 @@ function setupCartDrawerEvents() {
 // دەستپێکردنی گشتی / Init everything once the page has loaded
 // -------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
+  setActiveNavLink();
   renderHomeSections();
   buildCategoryFilters();
   renderProductsPage();
