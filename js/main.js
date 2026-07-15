@@ -68,8 +68,16 @@ function getCategoryLabel(key) {
 
 // دروستکردنی HTML بۆ یەک کارتی بەرهەم / Build the HTML for one product card
 function buildProductCard(product) {
+  const defaultGrams = STORE_CONFIG.defaultWeightGrams;
+  const defaultOpt = STORE_CONFIG.weightOptions.find(o => o.grams === defaultGrams)
+    || STORE_CONFIG.weightOptions[STORE_CONFIG.weightOptions.length - 1];
+
+  const weightButtons = STORE_CONFIG.weightOptions.map(opt => `
+    <button type="button" class="weight-btn${opt.grams === defaultOpt.grams ? " active" : ""}" data-weight="${opt.grams}" onclick="selectCardWeight(this, ${opt.grams})">${opt.shortLabel}</button>
+  `).join("");
+
   return `
-    <article class="product-card" data-category="${product.category}" data-name="${product.name}">
+    <article class="product-card" data-category="${product.category}" data-name="${product.name}" data-product-id="${product.id}" data-selected-weight="${defaultOpt.grams}">
       <div class="product-card-image">
         <img src="${product.image}" alt="${product.name}" loading="lazy" width="600" height="600">
         <span class="product-card-tag">${getCategoryLabel(product.category)}</span>
@@ -77,12 +85,15 @@ function buildProductCard(product) {
       <div class="product-card-body">
         <h3 class="product-card-name">${product.name}</h3>
         ${product.description ? `<p class="product-card-desc">${product.description}</p>` : ""}
+        <div class="weight-selector" role="group" aria-label="هەڵبژاردنی کێش">
+          ${weightButtons}
+        </div>
         <div class="product-card-footer">
           <div class="product-card-price">
-            <span class="price-value">${formatPrice(product.price)}</span>
-            <span class="price-unit">/ ١ کیلۆ</span>
+            <span class="price-value">${formatPrice(computeWeightPrice(product.price, defaultOpt.grams))}</span>
+            <span class="price-unit">/ ${defaultOpt.label}</span>
           </div>
-          <button class="btn btn-add" onclick='Cart.add(${JSON.stringify(product)})'>
+          <button class="btn btn-add" onclick="addProductToCart(this, ${product.id})">
             <span>زیادکردن</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
           </button>
@@ -90,6 +101,48 @@ function buildProductCard(product) {
       </div>
     </article>
   `;
+}
+
+// -------------------------------------------------------------------------
+// هەڵبژاردنی کێش لەسەر کارتی بەرهەم / Weight selection on a product card
+// -------------------------------------------------------------------------
+// هەر کارتێک بە شێوەیەکی سەربەخۆ هەڵبژاردنی کێشی خۆی هەڵدەگرێت (لە
+// data-selected-weight)، بۆیە ئەگەر هەمان بەرهەم لە چەند بەشێکی پەڕەکەدا
+// دەربکەوێت (وەک تایبەت + زۆرترین فرۆشراو)، هەریەکە جیاواز کار دەکات.
+//
+// Each card independently tracks its own selected weight (in
+// data-selected-weight), so if the same product appears in more than one
+// section of the page (e.g. Featured + Best Sellers), each instance works
+// independently.
+function selectCardWeight(btnEl, grams) {
+  const card = btnEl.closest(".product-card");
+  if (!card) return;
+
+  card.dataset.selectedWeight = grams;
+  card.querySelectorAll(".weight-btn").forEach(b => {
+    b.classList.toggle("active", Number(b.dataset.weight) === grams);
+  });
+
+  const productId = Number(card.dataset.productId);
+  const product = PRODUCTS.find(p => p.id === productId);
+  if (!product) return;
+
+  const opt = STORE_CONFIG.weightOptions.find(o => o.grams === grams);
+  const priceEl = card.querySelector(".price-value");
+  const unitEl = card.querySelector(".price-unit");
+  if (priceEl) priceEl.textContent = formatPrice(computeWeightPrice(product.price, grams));
+  if (unitEl && opt) unitEl.textContent = "/ " + opt.label;
+}
+
+// زیادکردنی بەرهەم بۆ سەبەتە بەپێی کێشی هەڵبژێردراو لەسەر هەمان کارت
+// Add a product to the cart, using whatever weight is selected on that
+// specific card instance.
+function addProductToCart(btnEl, productId) {
+  const card = btnEl.closest(".product-card");
+  const grams = card ? Number(card.dataset.selectedWeight) : STORE_CONFIG.defaultWeightGrams;
+  const product = PRODUCTS.find(p => p.id === productId);
+  if (!product) return;
+  Cart.add(product, grams);
 }
 
 // -------------------------------------------------------------------------
