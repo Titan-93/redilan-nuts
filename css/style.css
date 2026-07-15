@@ -386,6 +386,17 @@ h1, h2, h3, h4 {
 .price-value { font-weight: 800; color: var(--blue-900); font-size: 1.02rem; }
 .price-unit { font-size: 0.72rem; color: var(--ink-soft); }
 
+/* هەڵبژاردنی کێش لەسەر کارتی بەرهەم / Weight selector on product cards */
+.weight-selector { display: flex; gap: 6px; margin: 2px 0 6px; }
+.weight-btn {
+  flex: 1; padding: 7px 4px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border); font-weight: 700; font-size: 0.78rem;
+  color: var(--ink-soft); background: var(--white); text-align: center;
+  transition: all .18s ease;
+}
+.weight-btn:hover { border-color: var(--blue-600); color: var(--blue-800); }
+.weight-btn.active { background: var(--blue-800); border-color: var(--blue-800); color: var(--white); }
+
 /* =========================================================================
    فلتەر و گەڕان / Filters & search (products page)
    ========================================================================= */
@@ -575,6 +586,7 @@ h1, h2, h3, h4 {
 }
 .cart-item-info { flex: 1; min-width: 0; }
 .cart-item-name { font-weight: 700; font-size: 0.94rem; margin-bottom: 4px; }
+.cart-item-weight { font-size: 0.76rem; font-weight: 700; color: var(--blue-800); margin-bottom: 2px; }
 .cart-item-price { font-size: 0.8rem; color: var(--ink-soft); }
 .cart-item-qty { display: flex; align-items: center; gap: 10px; }
 .qty-btn {
