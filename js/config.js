@@ -42,6 +42,34 @@ const STORE_CONFIG = {
   tiktokUrl: "https://vt.tiktok.com/ZSCETNQpB/",
 
   /* -----------------------------------------------------------------------
+     کێشەکان / WEIGHT OPTIONS
+     -----------------------------------------------------------------------
+     ئەم لیستە هەڵبژاردنەکانی کێش دیاری دەکات کە لەسەر هەر کارتێکی بەرهەم
+     دەردەکەون. نرخی هەر بەرهەمێک لە products-data.js هەمیشە نرخی "1 کیلۆ"یە،
+     نرخی 250 گرام و 500 گرام خۆکارانە لەسەری ئەژمار دەکرێن.
+
+     بۆ زیادکردنی هەڵبژاردنێکی نوێ (بۆ نموونە 100 گرام): هێڵێکی نوێ زیاد بکە.
+     "grams" دەبێت ژمارە بێت، "label" دەقی تەواو (بۆ سەبەتە و واتساپ)،
+     "shortLabel" دەقی کورت (بۆ دوگمەکە خۆی).
+
+     This list controls the weight options shown on every product card.
+     Every product's "price" in products-data.js is always the 1kg price;
+     250g/500g prices are calculated from it automatically.
+
+     To add a new option (e.g. 100g): add a new line below.
+     "grams" must be a number, "label" is the full text (used in the cart
+     and WhatsApp message), "shortLabel" is the compact text on the button.
+     ----------------------------------------------------------------------- */
+  weightOptions: [
+    { grams: 250,  label: "250 گرام", shortLabel: "250 گ" },
+    { grams: 500,  label: "500 گرام", shortLabel: "500 گ" },
+    { grams: 1000, label: "1 کیلۆ",   shortLabel: "1 کگ" }
+  ],
+
+  // ---- کێشی بنەڕەت کە خۆکارانە هەڵبژێردراوە / Default pre-selected weight --
+  defaultWeightGrams: 1000,
+
+  /* -----------------------------------------------------------------------
      پارە / Currency label shown after every price
      ----------------------------------------------------------------------- */
   currencyLabel: "دینار",
