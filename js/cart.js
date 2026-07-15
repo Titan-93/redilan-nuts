@@ -14,15 +14,59 @@
 
 const CART_STORAGE_KEY = "nutsStoreCart";
 
+// -------------------------------------------------------------------------
+// یاریدەدەرەکانی کێش / Weight helper functions
+// -------------------------------------------------------------------------
+// ئەم فەنکشنانە لێرە دانراون (نەک main.js) چونکە cart.js پێش main.js
+// بارادەکرێت، بۆیە پێویستە بەردەست بن پێش ئەوەی main.js پێویستی پێیان بێت.
+//
+// These live here (not main.js) because cart.js loads before main.js, so
+// they need to already exist by the time main.js needs to call them.
+
+// دەرهێنانی نرخی بەرهەم بۆ کێشێکی دیاریکراو، لە نرخی 1 کیلۆوە
+// Work out a product's price for a given weight, based on its 1kg price
+function computeWeightPrice(basePrice1kg, grams) {
+  return Math.round(basePrice1kg * grams / 1000);
+}
+
+// دەقی خوێندنەوەی کێش، بۆ نموونە "250 گرام" یان "1 کیلۆ"
+// Human-readable weight label, e.g. "250 گرام" or "1 کیلۆ"
+function weightGramsLabel(grams) {
+  const opt = (typeof STORE_CONFIG !== "undefined" && STORE_CONFIG.weightOptions)
+    ? STORE_CONFIG.weightOptions.find(o => o.grams === grams)
+    : null;
+  if (opt) return opt.label;
+  return grams >= 1000 ? (grams / 1000) + " کیلۆ" : grams + " گرام";
+}
+
 const Cart = {
 
-  items: [], // { id, name, price, qty }
+  items: [], // { key, id, name, weight, weightLabel, unitPrice, qty }
 
   // بارکردنی سەبەتە لە localStorage / Load cart from localStorage
   load() {
     try {
       const raw = localStorage.getItem(CART_STORAGE_KEY);
-      this.items = raw ? JSON.parse(raw) : [];
+      let items = raw ? JSON.parse(raw) : [];
+      // گۆڕینی داتای کۆنی سەبەتە (پێش زیادکردنی کێش) بۆ شێوەی نوێ، بۆ ئەوەی
+      // سەبەتەی کڕیارە پێشووەکان هەڵنەوەشێتەوە یان هەڵە دروست نەکات.
+      // Migrate old cart data (from before weight options existed) to the
+      // new format, so returning customers don't lose their cart or hit
+      // errors. Old items are treated as 1kg.
+      items = items.map(item => {
+        if (item.key && item.weight && item.unitPrice !== undefined) return item;
+        const grams = item.weight || 1000;
+        return {
+          key: item.id + "_" + grams,
+          id: item.id,
+          name: item.name,
+          weight: grams,
+          weightLabel: weightGramsLabel(grams),
+          unitPrice: item.unitPrice !== undefined ? item.unitPrice : item.price,
+          qty: item.qty || 1
+        };
+      });
+      this.items = items;
     } catch (e) {
       this.items = [];
     }
@@ -34,13 +78,27 @@ const Cart = {
     this.updateBadge();
   },
 
-  // زیادکردنی بەرهەم / Add a product to the cart
-  add(product) {
-    const existing = this.items.find(i => i.id === product.id);
+  // زیادکردنی بەرهەم / Add a product to the cart, at a chosen weight
+  add(product, grams) {
+    grams = grams || (typeof STORE_CONFIG !== "undefined" ? STORE_CONFIG.defaultWeightGrams : 1000);
+    // کلیلێکی جیاواز بۆ هەر (بەرهەم + کێش)، تاوەکو 250گ و 1کگ ی هەمان
+    // بەرهەم وەک دوو دانەی جیاواز لە سەبەتەدا پیشان بدرێن.
+    // A distinct key per (product + weight), so 250g and 1kg of the same
+    // product show up as two separate cart lines.
+    const key = product.id + "_" + grams;
+    const existing = this.items.find(i => i.key === key);
     if (existing) {
       existing.qty += 1;
     } else {
-      this.items.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
+      this.items.push({
+        key,
+        id: product.id,
+        name: product.name,
+        weight: grams,
+        weightLabel: weightGramsLabel(grams),
+        unitPrice: computeWeightPrice(product.price, grams),
+        qty: 1
+      });
     }
     this.save();
     this.renderDrawer();
@@ -48,20 +106,20 @@ const Cart = {
   },
 
   // زیادکردنی دانە / Increase quantity
-  increase(id) {
-    const item = this.items.find(i => i.id === id);
+  increase(key) {
+    const item = this.items.find(i => i.key === key);
     if (item) item.qty += 1;
     this.save();
     this.renderDrawer();
   },
 
   // کەمکردنەوەی دانە / Decrease quantity (removes item if it hits 0)
-  decrease(id) {
-    const item = this.items.find(i => i.id === id);
+  decrease(key) {
+    const item = this.items.find(i => i.key === key);
     if (item) {
       item.qty -= 1;
       if (item.qty <= 0) {
-        this.items = this.items.filter(i => i.id !== id);
+        this.items = this.items.filter(i => i.key !== key);
       }
     }
     this.save();
@@ -69,8 +127,8 @@ const Cart = {
   },
 
   // سڕینەوەی تەواوی بەرهەم / Remove item completely
-  remove(id) {
-    this.items = this.items.filter(i => i.id !== id);
+  remove(key) {
+    this.items = this.items.filter(i => i.key !== key);
     this.save();
     this.renderDrawer();
   },
@@ -89,7 +147,7 @@ const Cart = {
 
   // کۆی گشتی نرخ / Total price
   totalPrice() {
-    return this.items.reduce((sum, i) => sum + (i.qty * i.price), 0);
+    return this.items.reduce((sum, i) => sum + (i.qty * i.unitPrice), 0);
   },
 
   // نیشاندانی ژمارە لەسەر ئایکۆنی سەبەتە / Update the little badge number
@@ -135,17 +193,18 @@ const Cart = {
       if (emptyEl) emptyEl.style.display = "none";
       if (sendBtn) sendBtn.disabled = false;
       listEl.innerHTML = this.items.map(item => `
-        <div class="cart-item" data-id="${item.id}">
+        <div class="cart-item" data-key="${item.key}">
           <div class="cart-item-info">
             <p class="cart-item-name">${item.name}</p>
-            <p class="cart-item-price">${this.formatPrice(item.price)} / کیلۆ</p>
+            <p class="cart-item-weight">${item.weightLabel}</p>
+            <p class="cart-item-price">${this.formatPrice(item.unitPrice)}</p>
           </div>
           <div class="cart-item-qty">
-            <button class="qty-btn" onclick="Cart.decrease(${item.id})" aria-label="کەمکردنەوە">−</button>
+            <button class="qty-btn" onclick="Cart.decrease('${item.key}')" aria-label="کەمکردنەوە">−</button>
             <span class="qty-value">${item.qty}</span>
-            <button class="qty-btn" onclick="Cart.increase(${item.id})" aria-label="زیادکردن">+</button>
+            <button class="qty-btn" onclick="Cart.increase('${item.key}')" aria-label="زیادکردن">+</button>
           </div>
-          <button class="cart-item-remove" onclick="Cart.remove(${item.id})" aria-label="سڕینەوە">✕</button>
+          <button class="cart-item-remove" onclick="Cart.remove('${item.key}')" aria-label="سڕینەوە">✕</button>
         </div>
       `).join("");
     }
@@ -177,7 +236,7 @@ const Cart = {
     let message = "سڵاو،%0Aدەمەوێت داواکاری ئەم بەرهەمانە بکەم:%0A%0A";
 
     this.items.forEach(item => {
-      message += `• ${item.name} — ${item.qty} کیلۆ — ${this.formatPrice(item.price * item.qty)}%0A`;
+      message += `• ${item.name} (${item.weightLabel}) — ${item.qty} دانە — ${this.formatPrice(item.unitPrice * item.qty)}%0A`;
     });
 
     message += `%0Aکۆی گشتی: ${this.formatPrice(this.totalPrice())}%0A%0A`;
