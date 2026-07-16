@@ -125,7 +125,7 @@ const PRODUCTS = [
   { id: 35, name: "گوێزی سینی",         category: "walnut",     price: 6000, image: "images/products/walnuts/گوێزی-سینی.png",        description: "گوێزی بە پەلک ی سینی دنک درشتی بە تام",         bestSeller: true,  featured: true },
   { id: 36, name: "گوێزی ئەمریکی",      category: "walnut",     price: 7000, image: "images/products/walnuts/گوێزی-ئەمریکی.png",     description: "گوێزی ئەمریکی بە پەلکی کاکلی سپی و سروشتی",            bestSeller: false, featured: false },
   { id: 37, name: "گوێزی کاکلی سۆر",      category: "walnut",     price: 12000, image: "images/products/walnuts/گوێزی-کاکل-سینی.png",     description: "گوێزی کاکلی سۆر ی سەنی بە تام و چەور",                     bestSeller: false, featured: false },
-  { id: 38, name: "گوێزی کاکلی سپی",       category: "walnut",     price: 14000, image: "images/products/walnuts/گوێزی-کاکل-ئەمریکی.png",      description: "پۆشراو بە هەنگوینی سروشتی.",                  bestSeller: false, featured: false },
+  { id: 38, name: "گوێزی کاکلی سپی",       category: "walnut",     price: 14000, image: "images/products/walnuts/گوێزی-کاکل-ئەمریکی.png",      description: "گوێزی کاکلی سپی نوێ و دەرەجەیەک.",                  bestSeller: false, featured: false },
 
   // ================= نۆک / CHICKPEAS =======================================
   { id: 39, name: "نۆکی نەرمی برژاو",                 category: "chickpeas", price: 5000,  image: "images/products/chickpeas/نۆکی-نەرم.png",           description: "برژاوی تەواو و نەرمی خۆش",                       bestSeller: true,  featured: false },
