@@ -125,18 +125,21 @@ const PRODUCTS = [
   { id: 35, name: "گوێزی سینی",         category: "walnut",     price: 6000, image: "images/products/walnuts/گوێزی-سینی.png",        description: "گوێزی بە پەلک ی سینی دنک درشتی بە تام",         bestSeller: true,  featured: true },
   { id: 36, name: "گوێزی ئەمریکی",      category: "walnut",     price: 7000, image: "images/products/walnuts/گوێزی-ئەمریکی.png",     description: "گوێزی ئەمریکی بە پەلکی کاکلی سپی و سروشتی",            bestSeller: false, featured: false },
   { id: 37, name: "گوێزی کاکلی سۆر",      category: "walnut",     price: 12000, image: "images/products/walnuts/گوێزی-کاکل-سینی.png",     description: "گوێزی کاکلی سۆر ی سەنی بە تام و چەور",                     bestSeller: false, featured: false },
-  { id: 38, name: "گوێزی کاکلی سپی",       category: "walnut",     price: 14000, image: "images/products/walnuts/گوێزی-کاکل-ئەمریکی.png",      description: "گوێزی کاکلی سپی نوێ و دەرەجەیەک.",                  bestSeller: false, featured: false },
+  { id: 38, name: "گوێزی کاکلی سپی",       category: "walnut",     price: 14000, image: "images/products/walnuts/گوێزی-کاکل-ئەمریکی.png",      description: "پۆشراو بە هەنگوینی سروشتی.",                  bestSeller: false, featured: false },
 
   // ================= نۆک / CHICKPEAS =======================================
   { id: 39, name: "نۆکی نەرمی برژاو",                 category: "chickpeas", price: 5000,  image: "images/products/chickpeas/نۆکی-نەرم.png",           description: "برژاوی تەواو و نەرمی خۆش",                       bestSeller: true,  featured: false },
   { id: 40, name: "نۆکی خۆمالی",                category: "chickpeas", price: 5000,  image: "images/products/chickpeas/نۆکی-خۆمالی.png",          description: "نۆکی خۆمالی برژاوی بە خوێ بە تام",                     bestSeller: false, featured: false },
 
-  // ================= میوەی وشکراو / DRY FIG =================================
-  { id: 41, name: "هەنجیری وشکی خۆمالی",        category: "dry fruit",       price: 10000, image: "images/products/figs/هەنچەری-خۆمالی.png",       description: "شیرینی سروشتی و نەرمی تایبەت.",               bestSeller: true,  featured: true },
-  { id: 42, name: "هەنجیری وشکی لەتک",            category: "dry fruit",       price: 7000, image: "images/products/figs/هەنچیری-لەتک.png",           description: "هەنجیری لەتکی خۆمالی وشکراوی بە تام و شیرین",                 bestSeller: false, featured: false },
+  // ================= میوەی وشکراو / DRY FRUIT =================================
+  { id: 41, name: "هەنجیری وشکی خۆمالی",        category: "dry fruit",       price: 10000, image: "images/products/dryfruit/هەنچەری-خۆمالی.png",       description: "شیرینی سروشتی و نەرمی تایبەت.",               bestSeller: true,  featured: true },
+  { id: 42, name: "هەنجیری وشکی لەتک",            category: "dry fruit",       price: 7000, image: "images/products/dryfruit/هەنچیری-لەتک.png",           description: "هەنجیری لەتکی خۆمالی وشکراوی بە تام و شیرین",                 bestSeller: false, featured: false },
+  { id: 43, name: "قەیسی تورکی",            category: "dry fruit",       price: 20000, image: "images/products/dryfruit/قەیسی-تورکی.png",           description: "قەیسی تورکی وشکراو دەرەجە یەک ی شیرین",                 bestSeller: false, featured: false },
+  { id: 44, name: "قەیسی ئێرانی",            category: "dry fruit",       price: 6000, image: "images/products/dryfruit/قەیسی-ئێرانی.png",           description: "قەیسی ئێرانی وشکراو مزر بۆ مەرەگە",                 bestSeller: false, featured: false },
+  { id: 45, name: "مێوژی سۆر",            category: "dry fruit",       price: 8000, image: "images/products/dryfruit/مێوژی-سۆر.png",           description: "مێوژی سۆری ئوزپاکستانی شیرین ی دەرەجە یەک",                 bestSeller: false, featured: false },
 
   // ================= میوەی وشکراو / DRY fruits =================================
-  { id: 43, name: "قەزوانی ورد",        category: "qazwan",       price: 10000, image: "images/products/qazwan/بنەوشە.png",       description: "قەزوانی وردی ناسک بە تام ",               bestSeller: true,  featured: true },
-  { id: 44, name: "قەزوانی درشت",            category: "qazwan",       price: 8000, image: "images/products/qazwan/قەزوانی-درشت.png",           description: "قەزوانی درشت ی جوان بۆ قاوە",                 bestSeller: false, featured: false }
+  { id: 46, name: "قەزوانی ورد",        category: "qazwan",       price: 10000, image: "images/products/qazwan/بنەوشە.png",       description: "قەزوانی وردی ناسک بە تام ",               bestSeller: true,  featured: true },
+  { id: 47, name: "قەزوانی درشت",            category: "qazwan",       price: 8000, image: "images/products/qazwan/قەزوانی-درشت.png",           description: "قەزوانی درشت ی جوان بۆ قاوە",                 bestSeller: false, featured: false }
 
 ];
