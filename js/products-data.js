@@ -132,13 +132,13 @@ const PRODUCTS = [
   { id: 40, name: "نۆکی خۆمالی",                category: "chickpeas", price: 5000,  image: "images/products/chickpeas/نۆکی-خۆمالی.png",          description: "نۆکی خۆمالی برژاوی بە خوێ بە تام",                     bestSeller: false, featured: false },
 
   // ================= میوەی وشکراو / DRY FRUIT =================================
-  { id: 41, name: "هەنجیری وشکی خۆمالی",        category: "dry fruit",       price: 10000, image: "images/products/dryfruit/هەنچەری-خۆمالی.png",       description: "شیرینی سروشتی و نەرمی تایبەت.",               bestSeller: true,  featured: true },
-  { id: 42, name: "هەنجیری وشکی لەتک",            category: "dry fruit",       price: 7000, image: "images/products/dryfruit/هەنچیری-لەتک.png",           description: "هەنجیری لەتکی خۆمالی وشکراوی بە تام و شیرین",                 bestSeller: false, featured: false },
-  { id: 43, name: "قەیسی تورکی",            category: "dry fruit",       price: 20000, image: "images/products/dryfruit/قەیسی-تورکی.png",           description: "قەیسی تورکی وشکراو دەرەجە یەک ی شیرین",                 bestSeller: false, featured: false },
-  { id: 44, name: "قەیسی ئێرانی",            category: "dry fruit",       price: 6000, image: "images/products/dryfruit/قەیسی-ئێرانی.png",           description: "قەیسی ئێرانی وشکراو مزر بۆ مەرەگە",                 bestSeller: false, featured: false },
-  { id: 45, name: "مێوژی سۆر",            category: "dry fruit",       price: 8000, image: "images/products/dryfruit/مێوژی-سۆر.png",           description: "مێوژی سۆری ئوزپاکستانی شیرین ی دەرەجە یەک",                 bestSeller: false, featured: false },
+  { id: 41, name: "هەنجیری وشکی خۆمالی",        category: "dryfruit",       price: 10000, image: "images/products/dryfruit/هەنچەری-خۆمالی.png",       description: "شیرینی سروشتی و نەرمی تایبەت.",               bestSeller: true,  featured: true },
+  { id: 42, name: "هەنجیری وشکی لەتک",            category: "dryfruit",       price: 7000, image: "images/products/dryfruit/هەنچیری-لەتک.png",           description: "هەنجیری لەتکی خۆمالی وشکراوی بە تام و شیرین",                 bestSeller: false, featured: false },
+  { id: 43, name: "قەیسی تورکی",            category: "dryfruit",       price: 20000, image: "images/products/dryfruit/قەیسی-تورکی.png",           description: "قەیسی تورکی وشکراو دەرەجە یەک ی شیرین",                 bestSeller: false, featured: false },
+  { id: 44, name: "قەیسی ئێرانی",            category: "dryfruit",       price: 6000, image: "images/products/dryfruit/قەیسی-ئێرانی.png",           description: "قەیسی ئێرانی وشکراو مزر بۆ مەرەگە",                 bestSeller: false, featured: false },
+  { id: 45, name: "مێوژی سۆر",            category: "dryfruit",       price: 8000, image: "images/products/dryfruit/مێوژی-سۆر.png",           description: "مێوژی سۆری ئوزپاکستانی شیرین ی دەرەجە یەک",                 bestSeller: false, featured: false },
 
-  // ================= میوەی وشکراو / DRY fruits =================================
+  // ================= قەزوان / QAZWAN =========================================
   { id: 46, name: "قەزوانی ورد",        category: "qazwan",       price: 10000, image: "images/products/qazwan/بنەوشە.png",       description: "قەزوانی وردی ناسک بە تام ",               bestSeller: true,  featured: true },
   { id: 47, name: "قەزوانی درشت",            category: "qazwan",       price: 8000, image: "images/products/qazwan/قەزوانی-درشت.png",           description: "قەزوانی درشت ی جوان بۆ قاوە",                 bestSeller: false, featured: false }
 
