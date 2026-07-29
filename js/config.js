@@ -42,6 +42,21 @@ const STORE_CONFIG = {
   tiktokUrl: "https://vt.tiktok.com/ZSCETNQpB/",
 
   /* -----------------------------------------------------------------------
+     TODO: SITE_URL — بەستەری تەواوی ماڵپەڕ دوای بڵاوکردنەوە (بۆ SEO/OG tags)
+     TODO: SITE_URL — the site's live URL once deployed (used for canonical
+     links and Open Graph tags). Update this the moment the domain is live.
+     ----------------------------------------------------------------------- */
+  siteUrl: "https://redilan-nuts.example.com",
+
+  /* -----------------------------------------------------------------------
+     TODO: PORTFOLIO_URL — لینکی پۆرتفۆلیۆی گەشەپێدەر (Titan-93Dev)
+     TODO: PORTFOLIO_URL — the developer's (Titan-93Dev) portfolio link,
+     shown in the footer credit. Swap in the live portfolio URL once it's
+     deployed — same pattern used across the other Titan-93Dev projects.
+     ----------------------------------------------------------------------- */
+  portfolioUrl: "#",
+
+  /* -----------------------------------------------------------------------
      کێشەکان / WEIGHT OPTIONS
      -----------------------------------------------------------------------
      ئەم لیستە هەڵبژاردنەکانی کێش دیاری دەکات کە لەسەر هەر کارتێکی بەرهەم
@@ -100,7 +115,7 @@ const STORE_CONFIG = {
     { key: "almond",     label: "بادام",           icon: "🌱" },
     { key: "walnut",     label: "گوێز",            icon: "🌳" },
     { key: "chickpeas",  label: "نۆک",             icon: "🌕" },
-    { key: "dry fruit",        label: "میوەی وشکراو",     icon: "🍐" },
+    { key: "dryfruit",        label: "میوەی وشکراو",     icon: "🍐" },
     { key: "qazwan",        label: "قەزوان",     icon: "🥦" }
   ]
 };
