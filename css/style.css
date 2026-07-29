@@ -8,7 +8,10 @@
    The whole site will update automatically.
    ========================================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700;800&family=Vazirmatn:wght@400;500;600;700&display=swap');
+/* تێبینی: فۆنتەکان ئێستا لە <head>ی HTML بارادەکرێن بە preconnect بۆ خێرایی زیاتر */
+/* Note: fonts are now loaded via preconnected <link> tags in the HTML head
+   instead of @import here, since @import blocks CSS parsing and delays
+   first paint. See the <head> of each page. */
 
 :root {
   /* ---- ڕەنگەکان / Colors ---- */
@@ -39,6 +42,31 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* دەورەیەکی ڕوونی فۆکەس بۆ هەموو توخمە کارپێکراوەکان (a11y) */
+/* A clear, consistent focus ring for all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.filter-chip:focus-visible,
+.weight-btn:focus-visible {
+  outline: 2.5px solid var(--blue-600);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; top: -60px; right: 16px; z-index: 9999;
+  background: var(--blue-800); color: var(--white);
+  padding: 12px 20px; border-radius: var(--radius-sm);
+  font-weight: 700; transition: top .2s ease;
+}
+.skip-link:focus { top: 16px; }
 
 html {
   scroll-behavior: smooth;
@@ -412,7 +440,7 @@ h1, h2, h3, h4 {
   border: 1.5px solid var(--border); font-family: inherit; font-size: 0.95rem;
   background: var(--white); transition: border-color .2s ease;
 }
-.search-box input:focus { outline: none; border-color: var(--blue-600); }
+.search-box input:focus { outline: none; border-color: var(--blue-600); box-shadow: 0 0 0 3px var(--blue-100); }
 .search-box svg { position: absolute; top: 50%; right: 16px; transform: translateY(-50%); color: var(--ink-soft); }
 
 .filter-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
@@ -516,6 +544,8 @@ h1, h2, h3, h4 {
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   font-size: 0.85rem; color: rgba(255,255,255,0.55);
 }
+.dev-credit-link { color: rgba(255,255,255,0.85); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; transition: color .2s ease; }
+.dev-credit-link:hover { color: var(--white); }
 @media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
 
@@ -611,7 +641,10 @@ h1, h2, h3, h4 {
   border: 1.5px solid var(--border); border-radius: var(--radius-sm);
   font-family: inherit; font-size: 0.9rem;
 }
-.customer-field:focus { outline: none; border-color: var(--blue-600); }
+.customer-field:focus { outline: none; border-color: var(--blue-600); box-shadow: 0 0 0 3px var(--blue-100); }
+.field-error { color: #C0435A; font-size: 0.78rem; margin: -6px 0 10px; display: none; }
+.field-error.visible { display: block; }
+.customer-field.invalid { border-color: #C0435A; }
 
 /* =========================================================================
    لاپەڕەی ناوەکی / Generic inner page hero (products/contact pages)
