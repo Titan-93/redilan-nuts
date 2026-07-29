@@ -219,8 +219,20 @@ const Cart = {
     if (!drawer) return;
     const shouldOpen = forceOpen !== undefined ? forceOpen : !drawer.classList.contains("open");
     drawer.classList.toggle("open", shouldOpen);
+    drawer.setAttribute("aria-hidden", shouldOpen ? "false" : "true");
     if (overlay) overlay.classList.toggle("visible", shouldOpen);
     document.body.style.overflow = shouldOpen ? "hidden" : "";
+
+    if (shouldOpen) {
+      // هەڵگرتنی توخمێک کە فۆکەسی هەبوو، بۆ گەڕانەوەی فۆکەس دوای داخستن
+      // Remember what had focus, so we can return focus to it on close
+      this._lastFocused = document.activeElement;
+      const closeBtn = document.getElementById("closeCartBtn");
+      if (closeBtn) closeBtn.focus();
+    } else if (this._lastFocused) {
+      this._lastFocused.focus();
+      this._lastFocused = null;
+    }
   },
 
   /* -----------------------------------------------------------------------
@@ -229,24 +241,33 @@ const Cart = {
   sendOrder() {
     if (this.items.length === 0) return;
 
-    const customerName = document.getElementById("customerName")?.value.trim() || "";
-    const customerPhone = document.getElementById("customerPhone")?.value.trim() || "";
-    const customerAddress = document.getElementById("customerAddress")?.value.trim() || "";
+    // خۆشکردنی نرخی خانەکان / Trim + cap the length of each field so a very
+    // long paste can't produce an unreasonably huge WhatsApp message.
+    const customerName = (document.getElementById("customerName")?.value || "").trim().slice(0, 120);
+    const customerPhone = (document.getElementById("customerPhone")?.value || "").trim().slice(0, 40);
+    const customerAddress = (document.getElementById("customerAddress")?.value || "").trim().slice(0, 200);
 
-    let message = "سڵاو،%0Aدەمەوێت داواکاری ئەم بەرهەمانە بکەم:%0A%0A";
+    const lines = ["سڵاو،", "دەمەوێت داواکاری ئەم بەرهەمانە بکەم:", ""];
 
     this.items.forEach(item => {
-      message += `• ${item.name} (${item.weightLabel}) — ${item.qty} دانە — ${this.formatPrice(item.unitPrice * item.qty)}%0A`;
+      lines.push(`• ${item.name} (${item.weightLabel}) — ${item.qty} دانە — ${this.formatPrice(item.unitPrice * item.qty)}`);
     });
 
-    message += `%0Aکۆی گشتی: ${this.formatPrice(this.totalPrice())}%0A%0A`;
-    message += `ناو: ${customerName || "..."}%0A`;
-    message += `ژمارەی تەلەفۆن: ${customerPhone || "..."}%0A`;
-    message += `ناونیشان: ${customerAddress || "..."}%0A%0A`;
-    message += "سوپاس بۆ کات و بایەختان.";
+    lines.push("", `کۆی گشتی: ${this.formatPrice(this.totalPrice())}`, "");
+    lines.push(`ناو: ${customerName || "..."}`);
+    lines.push(`ژمارەی تەلەفۆن: ${customerPhone || "..."}`);
+    lines.push(`ناونیشان: ${customerAddress || "..."}`, "");
+    lines.push("سوپاس بۆ کات و بایەختان.");
+
+    // encodeURIComponent-ـی هەموو نامەکە پێویستە، نەک تەنها هێڵی نوێ، بۆ
+    // ئەوەی هیچ نووسینێکی کڕیار (بۆ نموونە &, #, +, %) بەستەرەکە تێکنەدات.
+    // The full message must be run through encodeURIComponent (not just the
+    // newlines), so any customer-typed text (e.g. &, #, +, %) can't break
+    // or truncate the resulting WhatsApp link.
+    const message = encodeURIComponent(lines.join("\n"));
 
     const url = `https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${message}`;
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener");
   },
 
   init() {
