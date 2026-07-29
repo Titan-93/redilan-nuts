@@ -271,13 +271,15 @@ function setupMobileMenu() {
   const menu = document.getElementById("mobileMenu");
   if (!toggle || !menu) return;
   toggle.addEventListener("click", () => {
-    menu.classList.toggle("open");
-    toggle.classList.toggle("open");
+    const isOpen = menu.classList.toggle("open");
+    toggle.classList.toggle("open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
   });
   menu.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       menu.classList.remove("open");
       toggle.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
     });
   });
 }
@@ -336,6 +338,19 @@ function setupCartDrawerEvents() {
   if (closeBtn) closeBtn.addEventListener("click", () => Cart.toggleDrawer(false));
   if (overlay) overlay.addEventListener("click", () => Cart.toggleDrawer(false));
   if (sendBtn) sendBtn.addEventListener("click", () => Cart.sendOrder());
+
+  // داخستنی درۆوەر بە کلیکی Escape / Close the drawer with the Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const drawer = document.getElementById("cartDrawer");
+    if (drawer && drawer.classList.contains("open")) Cart.toggleDrawer(false);
+    const menu = document.getElementById("mobileMenu");
+    const toggle = document.getElementById("menuToggle");
+    if (menu && menu.classList.contains("open")) {
+      menu.classList.remove("open");
+      if (toggle) { toggle.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); }
+    }
+  });
 }
 
 // -------------------------------------------------------------------------
