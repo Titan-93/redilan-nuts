@@ -3,12 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>چەرەساتی رێ دیلان</title>
+  <title>چەرەساتی رێ دیلان | فستق، گوێز و بەروبووی وشکی تازە</title>
   <meta name="description" content="باشترین فستق، کاجو، بادام، گوێز و بەروبووی وشک بە کوالێتی بەرز و نرخی گونجاو — داواکاریت بنێرە ڕاستەوخۆ بۆ واتساپ.">
+  <meta name="theme-color" content="#0B3E8C">
+  <link rel="canonical" href="https://redilan-nuts.example.com/index.html">
   <link rel="icon" type="image/png" href="images/logo-icon.png">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="چەرەساتی رێ دیلان">
+  <meta property="og:title" content="چەرەساتی رێ دیلان | فستق، گوێز و بەروبووی وشکی تازە">
+  <meta property="og:description" content="باشترین فستق، کاجو، بادام، گوێز و بەروبووی وشک بە کوالێتی بەرز و نرخی گونجاو — داواکاریت بنێرە ڕاستەوخۆ بۆ واتساپ.">
+  <meta property="og:image" content="https://redilan-nuts.example.com/images/logo-icon.png">
+  <meta property="og:url" content="https://redilan-nuts.example.com/index.html">
+  <meta property="og:locale" content="ckb_IQ">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="چەرەساتی رێ دیلان">
+  <meta name="twitter:description" content="باشترین فستق، کاجو، بادام، گوێز و بەروبووی وشک بە کوالێتی بەرز و نرخی گونجاو.">
+  <meta name="twitter:image" content="https://redilan-nuts.example.com/images/logo-icon.png">
+
+  <!-- خێراکردنی بارکردنی فۆنت / Faster font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700;800&family=Vazirmatn:wght@400;500;600;700&display=swap">
+
   <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "چەرەساتی رێ دیلان",
+    "image": "https://redilan-nuts.example.com/images/logo-icon.png",
+    "priceRange": "$$",
+    "telephone": "+9647505268166",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Erbil",
+      "addressCountry": "IQ"
+    }
+  }
+  </script>
 </head>
 <body>
+
+  <a href="#mainContent" class="skip-link">بازدان بۆ ناوەڕۆکی سەرەکی</a>
 
   <!-- لۆدینگ سکرین / Page loader -->
   <div class="page-loader" id="pageLoader"><div class="loader-spinner"></div></div>
@@ -17,7 +56,7 @@
   <header class="site-header" id="siteHeader">
     <div class="container nav-inner">
       <a href="index.html" class="logo">
-        <span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ"></span>
+        <span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ" width="40" height="40"></span>
         <span>چەرەساتی رێ دیلان</span>
       </a>
       <nav class="nav-links">
@@ -30,21 +69,21 @@
         <button class="nav-cart-btn open-cart-btn" aria-label="سەبەتەی داواکاری">
           🛒<span class="cart-badge">0</span>
         </button>
-        <button class="menu-toggle" id="menuToggle" aria-label="مێنیو"><span></span><span></span><span></span></button>
+        <button class="menu-toggle" id="menuToggle" aria-label="کردنەوەی مێنیو" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
   <!-- مێنیوی مۆبایل / Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
+  <nav class="mobile-menu" id="mobileMenu" aria-label="مێنیوی مۆبایل">
     <a href="index.html">ماڵەوە</a>
     <a href="berhemakan.html">بەرهەمەکان</a>
     <a href="index.html#why">بۆچی ئێمە</a>
     <a href="peywendi.html">پەیوەندی</a>
-  </div>
+  </nav>
 
   <!-- ======================= هیرۆ / HERO ======================= -->
-  <section class="hero">
+  <section class="hero" id="mainContent">
     <div class="container hero-inner">
       <div>
         <span class="hero-eyebrow">🌿 تازە و سروشتی ١٠٠٪</span>
@@ -57,7 +96,7 @@
       </div>
       <div class="hero-visual">
         <div class="hero-blob">
-          <img src="images/logo-icon.png" alt="لۆگۆی فرۆشگا" class="hero-blob-logo">
+          <img src="images/logo-icon.png" alt="لۆگۆی فرۆشگا" class="hero-blob-logo" width="220" height="220">
         </div>
         <div class="hero-float-card c1"><span class="emoji">🥜</span> فستقی ئەکبەری</div>
         <div class="hero-float-card c2"><span class="emoji">🌰</span> گازۆی ١٨٠</div>
@@ -220,7 +259,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand"><span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ"></span> چەرەساتی رێ دیلان</div>
+          <div class="footer-brand"><span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ" width="40" height="40"></span> چەرەساتی رێ دیلان</div>
           <p class="footer-desc">باشترین فستق، کاجو، بادام و بەروبووی وشک بە کوالێتی بەرز و تامی ڕەسەن.</p>
         </div>
         <div>
@@ -249,17 +288,17 @@
       </div>
       <div class="footer-bottom">
         <span>© 2026 چەرەساتی رێ دیلان. هەموو مافێک پارێزراوە.</span>
-        <span>دروستکراوە بە ❤️ بۆ کڕیارانی خۆشەویست</span>
+        <span>دروستکراوە لەلایەن <a href="#" id="devCreditLink" target="_blank" rel="noopener noreferrer" class="dev-credit-link">Titan-93Dev</a></span>
       </div>
     </div>
   </footer>
 
   <!-- ======================= درۆوەری سەبەتە / CART DRAWER ======================= -->
   <div class="cart-overlay" id="cartOverlay"></div>
-  <aside class="cart-drawer" id="cartDrawer">
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle" aria-hidden="true">
     <div class="cart-drawer-header">
-      <span class="cart-drawer-title">🛒 لیستی داواکاری</span>
-      <button class="close-btn" id="closeCartBtn">✕</button>
+      <span class="cart-drawer-title" id="cartDrawerTitle">🛒 لیستی داواکاری</span>
+      <button class="close-btn" id="closeCartBtn" aria-label="داخستنی سەبەتە">✕</button>
     </div>
     <div class="cart-drawer-body">
       <div id="cartItemsList"></div>
@@ -270,9 +309,9 @@
     </div>
     <div class="cart-drawer-footer">
       <div class="cart-total-row"><span>کۆی گشتی</span><span id="cartTotalPrice">0 دینار</span></div>
-      <input type="text" class="customer-field" id="customerName" placeholder="ناوت بنووسە">
-      <input type="tel" class="customer-field" id="customerPhone" placeholder="ژمارەی تەلەفۆن">
-      <input type="text" class="customer-field" id="customerAddress" placeholder="ناونیشانی گەیاندن">
+      <input type="text" class="customer-field" id="customerName" placeholder="ناوت بنووسە" maxlength="120" autocomplete="name">
+      <input type="tel" class="customer-field" id="customerPhone" placeholder="ژمارەی تەلەفۆن" maxlength="20" inputmode="tel" autocomplete="tel">
+      <input type="text" class="customer-field" id="customerAddress" placeholder="ناونیشانی گەیاندن" maxlength="200" autocomplete="street-address">
       <button class="btn btn-whatsapp" id="sendOrderBtn" disabled>ناردنی داواکاری بە واتساپ 💬</button>
     </div>
   </aside>
@@ -295,6 +334,7 @@
     document.getElementById("mapFrameHome").src = STORE_CONFIG.mapEmbedUrl;
     document.getElementById("footerPhone").textContent = "📞 " + STORE_CONFIG.phoneDisplay;
     document.getElementById("footerAddress").textContent = "📍 " + STORE_CONFIG.address;
+    document.getElementById("devCreditLink").href = STORE_CONFIG.portfolioUrl;
   </script>
 </body>
 </html>
