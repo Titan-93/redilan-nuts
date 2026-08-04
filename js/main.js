@@ -77,13 +77,14 @@ function buildProductCard(product) {
   `).join("");
 
   return `
-    <article class="product-card" data-category="${product.category}" data-name="${product.name}" data-product-id="${product.id}" data-selected-weight="${defaultOpt.grams}">
-      <div class="product-card-image">
+    <article class="product-card${product.bestSeller ? " is-best-seller" : ""}" data-category="${product.category}" data-name="${product.name}" data-product-id="${product.id}" data-selected-weight="${defaultOpt.grams}">
+      <div class="product-card-image" data-open-quickview="${product.id}" role="button" tabindex="0" aria-label="بینینی وردەکاری ${product.name}">
         <img src="${product.image}" alt="${product.name}" loading="lazy" width="600" height="600">
         <span class="product-card-tag">${getCategoryLabel(product.category)}</span>
+        ${product.bestSeller ? `<span class="best-seller-ribbon">⭐ زۆرترین فرۆشراو</span>` : ""}
       </div>
       <div class="product-card-body">
-        <h3 class="product-card-name">${product.name}</h3>
+        <h3 class="product-card-name" data-open-quickview="${product.id}" role="button" tabindex="0">${product.name}</h3>
         ${product.description ? `<p class="product-card-desc">${product.description}</p>` : ""}
         <div class="weight-selector" role="group" aria-label="هەڵبژاردنی کێش">
           ${weightButtons}
@@ -179,6 +180,19 @@ function renderHomeSections() {
 let activeCategory = "all";
 let activeSearch = "";
 
+// دروستکردنی کارتی سکێلێتۆن / Build placeholder skeleton cards, shown
+// briefly while the grid re-renders after a filter or search change —
+// a small, deliberate transition so results don't just snap/flicker.
+function buildSkeletonCards(count) {
+  return Array.from({ length: count }).map(() => `
+    <div class="skeleton-card" aria-hidden="true">
+      <div class="skeleton-img skeleton-shimmer"></div>
+      <div class="skeleton-line skeleton-shimmer"></div>
+      <div class="skeleton-line skeleton-shimmer short"></div>
+    </div>
+  `).join("");
+}
+
 function renderProductsPage() {
   const grid = document.getElementById("productsGrid");
   const emptyState = document.getElementById("productsEmptyState");
@@ -198,6 +212,17 @@ function renderProductsPage() {
   if (emptyState) emptyState.style.display = list.length === 0 ? "block" : "none";
 }
 
+// وەک ئێفێکتێکی نەرم پێش پیشاندانی ئەنجامی نوێ (فلتەر/گەڕان)
+// A gentle skeleton flash before showing new filter/search results
+let renderTransitionTimer = null;
+function renderProductsPageWithTransition() {
+  const grid = document.getElementById("productsGrid");
+  if (!grid) return;
+  clearTimeout(renderTransitionTimer);
+  grid.innerHTML = buildSkeletonCards(6);
+  renderTransitionTimer = setTimeout(renderProductsPage, 180);
+}
+
 function buildCategoryFilters() {
   const wrap = document.getElementById("categoryFilters");
   if (!wrap) return;
@@ -214,7 +239,7 @@ function buildCategoryFilters() {
       wrap.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
       chip.classList.add("active");
       activeCategory = chip.dataset.cat;
-      renderProductsPage();
+      renderProductsPageWithTransition();
     });
   });
 
@@ -233,9 +258,11 @@ function buildCategoryFilters() {
 function setupSearch() {
   const input = document.getElementById("searchInput");
   if (!input) return;
+  let debounceTimer = null;
   input.addEventListener("input", () => {
     activeSearch = input.value;
-    renderProductsPage();
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(renderProductsPageWithTransition, 150);
   });
 }
 
@@ -354,9 +381,226 @@ function setupCartDrawerEvents() {
 }
 
 // -------------------------------------------------------------------------
+// دۆخی تاریک/ڕووناک / Dark mode toggle
+// -------------------------------------------------------------------------
+// دۆخەکە زوو لە <head>ی هەر پەڕەیەکدا دادەنرێت (پێش بارکردنی CSS) بۆ ئەوەی
+// چرپەیەکی ڕووناک لە پەڕەی تاریکدا نەبینرێت. لێرەدا تەنها دووگمەکە کار
+// پێدەکرێت.
+// The theme itself is set early in each page's <head> (before CSS loads)
+// to avoid a flash of the wrong theme. This just wires up the button.
+function setupThemeToggle() {
+  const btn = document.getElementById("themeToggleBtn");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const next = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) { /* ئەگەر localStorage بەردەست نەبوو / storage unavailable */ }
+    btn.setAttribute("aria-pressed", String(!isDark));
+  });
+  btn.setAttribute("aria-pressed", String(document.documentElement.getAttribute("data-theme") === "dark"));
+}
+
+// -------------------------------------------------------------------------
+// دانانی ناوی فرۆشگا لە هەموو شوێنێک لە config.js وە / Apply the store name
+// from config.js everywhere it's shown, instead of it being hardcoded
+// separately in three places (which is how it drifted out of sync before).
+// -------------------------------------------------------------------------
+function applyStoreName() {
+  document.querySelectorAll("#navStoreName, #footerStoreName, #copyrightStoreName").forEach(el => {
+    el.textContent = STORE_CONFIG.storeName;
+  });
+}
+
+// -------------------------------------------------------------------------
+// پرسیارە دووبارەکان / FAQ accordion
+// -------------------------------------------------------------------------
+function renderFaq() {
+  const list = document.getElementById("faqList");
+  if (!list) return;
+  list.innerHTML = STORE_CONFIG.faq.map((item, i) => `
+    <div class="faq-item">
+      <button type="button" class="faq-question" id="faqQ${i}" aria-expanded="false" aria-controls="faqA${i}">
+        <span>${item.q}</span>
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer" id="faqA${i}" role="region" aria-labelledby="faqQ${i}" hidden>
+        <p>${item.a}</p>
+      </div>
+    </div>
+  `).join("");
+}
+
+function setupFaqAccordion() {
+  const list = document.getElementById("faqList");
+  if (!list) return;
+  list.addEventListener("click", (e) => {
+    const btn = e.target.closest(".faq-question");
+    if (!btn) return;
+    const answer = document.getElementById(btn.getAttribute("aria-controls"));
+    const isOpen = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!isOpen));
+    btn.closest(".faq-item").classList.toggle("open", !isOpen);
+    if (answer) answer.hidden = isOpen;
+  });
+}
+
+// -------------------------------------------------------------------------
+// بەشداربوونی نامەکان / Newsletter signup
+// -------------------------------------------------------------------------
+// لەبەر ئەوەی ماڵپەڕەکە هیچ سێرڤەرێکی باکئێندی نییە، بەشداربوونەکە وەک
+// پەیامێکی واتساپ دەنێردرێت بۆ خاوەنی فرۆشگا — هەمان شێوازی داواکاریەکان.
+// Since this static site has no backend, a signup is sent as a WhatsApp
+// message to the store owner — the same pattern used for orders.
+function setupNewsletterForm() {
+  const form = document.getElementById("newsletterForm");
+  const note = document.getElementById("newsletterNote");
+  if (!form) return;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const phoneInput = document.getElementById("newsletterPhone");
+    const phone = phoneInput.value.trim().slice(0, 20);
+    if (!phone) return;
+    const message = encodeURIComponent(`سڵاو، دەمەوێت بەشداری لیستی هەواڵی بەرهەمی نوێ و داشکاندنەکان بم.\nژمارەی واتساپم: ${phone}`);
+    window.open(`https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${message}`, "_blank", "noopener");
+    if (note) note.textContent = "سوپاس! تەنها پەیامەکەت بنێرە بۆ واتساپ بۆ تەواوکردنی بەشداربوون.";
+    form.reset();
+  });
+}
+
+// -------------------------------------------------------------------------
+// مۆدالی بینینی خێرا / Product quick-view modal (with related products)
+// -------------------------------------------------------------------------
+function buildProductModalContent(product) {
+  const defaultGrams = STORE_CONFIG.defaultWeightGrams;
+  const defaultOpt = STORE_CONFIG.weightOptions.find(o => o.grams === defaultGrams)
+    || STORE_CONFIG.weightOptions[STORE_CONFIG.weightOptions.length - 1];
+
+  const weightButtons = STORE_CONFIG.weightOptions.map(opt => `
+    <button type="button" class="weight-btn${opt.grams === defaultOpt.grams ? " active" : ""}" data-weight="${opt.grams}" onclick="selectModalWeight(this, ${opt.grams}, ${product.id})">${opt.shortLabel}</button>
+  `).join("");
+  const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3);
+  const relatedHtml = related.length ? `
+    <div class="product-modal-related">
+      <h3>بەرهەمی هاوشێوە</h3>
+      <div class="related-products-row">
+        ${related.map(r => `
+          <button type="button" class="related-product-card" onclick="openProductModal(${r.id})">
+            <img src="${r.image}" alt="${r.name}" loading="lazy">
+            <span class="rp-name">${r.name}</span>
+            <span class="rp-price">${formatPrice(r.price)} / کگ</span>
+          </button>
+        `).join("")}
+      </div>
+    </div>
+  ` : "";
+
+  return `
+    <div class="product-modal-grid">
+      <div class="product-modal-image">
+        <img src="${product.image}" alt="${product.name}">
+      </div>
+      <div class="product-modal-body">
+        <h2 id="productModalTitle">${product.name}</h2>
+        ${product.description ? `<p class="product-card-desc">${product.description}</p>` : ""}
+        <div class="weight-selector" role="group" aria-label="هەڵبژاردنی کێش" data-modal-weight-group data-selected-weight="${defaultOpt.grams}">${weightButtons}</div>
+        <div class="product-card-footer" style="margin-top:16px;">
+          <div class="product-card-price">
+            <span class="price-value" data-modal-price>${formatPrice(computeWeightPrice(product.price, defaultOpt.grams))}</span>
+            <span class="price-unit" data-modal-unit>/ ${defaultOpt.label}</span>
+          </div>
+          <button class="btn btn-add" onclick="addProductToCartFromModal(${product.id})">
+            <span>زیادکردن</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+      ${relatedHtml}
+    </div>
+  `;
+}
+
+// هەڵبژاردنی کێش لەناو مۆدالدا / Weight selection inside the quick-view modal
+function selectModalWeight(btnEl, grams, productId) {
+  const group = btnEl.closest("[data-modal-weight-group]");
+  if (!group) return;
+  group.dataset.selectedWeight = grams;
+  group.querySelectorAll(".weight-btn").forEach(b => {
+    b.classList.toggle("active", Number(b.dataset.weight) === grams);
+  });
+  const product = PRODUCTS.find(p => p.id === productId);
+  if (!product) return;
+  const opt = STORE_CONFIG.weightOptions.find(o => o.grams === grams);
+  const body = group.closest(".product-modal-body");
+  const priceEl = body?.querySelector("[data-modal-price]");
+  const unitEl = body?.querySelector("[data-modal-unit]");
+  if (priceEl) priceEl.textContent = formatPrice(computeWeightPrice(product.price, grams));
+  if (unitEl && opt) unitEl.textContent = "/ " + opt.label;
+}
+
+function addProductToCartFromModal(productId) {
+  const group = document.querySelector("[data-modal-weight-group]");
+  const grams = group ? Number(group.dataset.selectedWeight) : STORE_CONFIG.defaultWeightGrams;
+  const product = PRODUCTS.find(p => p.id === productId);
+  if (!product) return;
+  Cart.add(product, grams);
+}
+
+function openProductModal(productId) {
+  const product = PRODUCTS.find(p => p.id === productId);
+  const overlay = document.getElementById("productModalOverlay");
+  const modal = document.getElementById("productModal");
+  const content = document.getElementById("productModalContent");
+  if (!product || !overlay || !modal || !content) return;
+
+  content.innerHTML = buildProductModalContent(product);
+  overlay.classList.add("open");
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  document.getElementById("productModalClose")?.focus();
+}
+
+function closeProductModal() {
+  const overlay = document.getElementById("productModalOverlay");
+  const modal = document.getElementById("productModal");
+  if (!overlay || !modal) return;
+  overlay.classList.remove("open");
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+function setupProductModal() {
+  const overlay = document.getElementById("productModalOverlay");
+  const closeBtn = document.getElementById("productModalClose");
+  if (!overlay) return;
+
+  // گوێگرتنی هەڵگیراو لەسەر بەلگە، چونکە کارتەکان بە دینامیکی دروست دەبن
+  // Delegated listener on the document, since cards are rendered dynamically
+  document.addEventListener("click", (e) => {
+    const trigger = e.target.closest("[data-open-quickview]");
+    if (trigger) openProductModal(Number(trigger.dataset.openQuickview));
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const trigger = e.target.closest("[data-open-quickview]");
+    if (trigger) { e.preventDefault(); openProductModal(Number(trigger.dataset.openQuickview)); }
+  });
+
+  overlay.addEventListener("click", closeProductModal);
+  if (closeBtn) closeBtn.addEventListener("click", closeProductModal);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeProductModal();
+  });
+}
+
+// -------------------------------------------------------------------------
 // دەستپێکردنی گشتی / Init everything once the page has loaded
 // -------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
+  applyStoreName();
+  renderFaq();
   setActiveNavLink();
   renderHomeSections();
   buildCategoryFilters();
@@ -367,6 +611,10 @@ document.addEventListener("DOMContentLoaded", () => {
   setupHeaderScroll();
   setupScrollReveal();
   setupCartDrawerEvents();
+  setupProductModal();
+  setupThemeToggle();
+  setupFaqAccordion();
+  setupNewsletterForm();
   restoreScrollPosition();
 
   // شاردنەوەی لۆدینگ سکرین / Hide the loading screen once ready
