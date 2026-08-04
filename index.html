@@ -2,6 +2,16 @@
 <html lang="ckb" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <script>
+    // دانانی دۆخی تاریک/ڕووناک پێش بارکردنی CSS بۆ ڕێگریکردن لە چرپەی هەڵە
+    // Set the theme before CSS loads, to avoid a flash of the wrong theme
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch (e) {}
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>چەرەساتی رێ دیلان | فستق، گوێز و بەروبووی وشکی تازە</title>
   <meta name="description" content="باشترین فستق، کاجو، بادام، گوێز و بەروبووی وشک بە کوالێتی بەرز و نرخی گونجاو — داواکاریت بنێرە ڕاستەوخۆ بۆ واتساپ.">
@@ -57,7 +67,7 @@
     <div class="container nav-inner">
       <a href="index.html" class="logo">
         <span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ" width="40" height="40"></span>
-        <span>چەرەساتی رێ دیلان</span>
+        <span id="navStoreName">چەرەساتی رێ دیلان</span>
       </a>
       <nav class="nav-links">
         <a href="index.html">ماڵەوە</a>
@@ -66,6 +76,9 @@
         <a href="peywendi.html">پەیوەندی</a>
       </nav>
       <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="گۆڕینی دۆخی تاریک/ڕووناک">
+          <span class="icon-moon" aria-hidden="true">🌙</span><span class="icon-sun" aria-hidden="true">☀️</span>
+        </button>
         <button class="nav-cart-btn open-cart-btn" aria-label="سەبەتەی داواکاری">
           🛒<span class="cart-badge">0</span>
         </button>
@@ -84,6 +97,7 @@
 
   <!-- ======================= هیرۆ / HERO ======================= -->
   <section class="hero" id="mainContent">
+    <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="container hero-inner">
       <div>
         <span class="hero-eyebrow">🌿 تازە و سروشتی ١٠٠٪</span>
@@ -254,12 +268,43 @@
     </div>
   </section>
 
+  <!-- ======================= پرسیارە دووبارەکان / FAQ ======================= -->
+  <section class="section reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">یارمەتیدان</span>
+          <h2 class="section-title">پرسیارە دووبارەکان</h2>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- ======================= نامەکان / NEWSLETTER ======================= -->
+  <section class="section section-alt reveal">
+    <div class="container">
+      <div class="newsletter-box">
+        <div class="newsletter-text">
+          <h2 class="section-title">هەواڵی نوێترین بەرهەم و داشکاندنەکان وەربگرە</h2>
+          <p>ژمارەی واتساپت بنووسە، جارێک-جارێک هەواڵی بەرهەمی نوێ و داشکاندنی تایبەتت بۆ دەنێرین. هیچ سپامێک نییە.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm">
+          <label for="newsletterPhone" class="sr-only">ژمارەی واتساپ</label>
+          <input type="tel" id="newsletterPhone" placeholder="ژمارەی واتساپت بنووسە" inputmode="tel" maxlength="20" required>
+          <button type="submit" class="btn btn-primary">بەشداربوون</button>
+        </form>
+        <p class="newsletter-note" id="newsletterNote" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <!-- ======================= فووتەر / FOOTER ======================= -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand"><span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ" width="40" height="40"></span> چەرەساتی رێ دیلان</div>
+          <div class="footer-brand"><span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ" width="40" height="40"></span> <span id="footerStoreName">چەرەساتی رێ دیلان</span></div>
           <p class="footer-desc">باشترین فستق، کاجو، بادام و بەروبووی وشک بە کوالێتی بەرز و تامی ڕەسەن.</p>
         </div>
         <div>
@@ -287,8 +332,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 چەرەساتی رێ دیلان. هەموو مافێک پارێزراوە.</span>
-        <span>دروستکراوە لەلایەن <a href="#" id="devCreditLink" target="_blank" rel="noopener noreferrer" class="dev-credit-link">Titan-93Dev</a></span>
+        <span>© 2026 <span id="copyrightStoreName">چەرەساتی رێ دیلان</span>. هەموو مافێک پارێزراوە.</span>
+        <span>دروستکراوە لەلایەن <a href="https://titan-93.github.io/portfolios/" id="devCreditLink" target="_blank" rel="noopener noreferrer" class="dev-credit-link">Titan-93Dev</a></span>
       </div>
     </div>
   </footer>
@@ -316,6 +361,13 @@
     </div>
   </aside>
 
+  <!-- ======================= مۆدالی بینینی خێرا / QUICK-VIEW MODAL ======================= -->
+  <div class="product-modal-overlay" id="productModalOverlay"></div>
+  <div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle" aria-hidden="true">
+    <button class="product-modal-close" id="productModalClose" aria-label="داخستن">✕</button>
+    <div id="productModalContent"></div>
+  </div>
+
   <!-- دووگمە فلۆتینگەکان / Floating buttons -->
   <a href="#" class="whatsapp-float open-cart-btn" aria-label="کردنەوەی سەبەتە">💬</a>
   <button class="back-to-top" id="backToTopBtn" aria-label="گەڕانەوە بۆ سەرەوە">↑</button>
@@ -324,6 +376,7 @@
   <script src="js/products-data.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
+  <script type="module" src="js/three-hero.js"></script>
   <script>
     // پڕکردنەوەی زانیاری پەیوەندی لە config.js / Fill contact info from config.js
     document.getElementById("phoneDisplayHome").textContent = STORE_CONFIG.phoneDisplay;
