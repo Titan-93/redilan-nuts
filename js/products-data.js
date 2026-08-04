@@ -75,8 +75,8 @@ const PRODUCTS = [
 
   // ================= فستق / PISTACHIO =====================================
   { id: 1,  name: "فستقی ئەکبەری",                 category: "pistachio", price: 24000, image: "images/products/pistachios/فستقی-ئەکبەری.png",           description: "فستقی ئەکبەری دەرەجە یەک بە تامی عەنتاب",              bestSeller: true,  featured: true },
-  { id: 2,  name: "فستقی ئەمریکی برژاو و خوێدار",       category: "pistachio", price: 20000, image: "images/products/pistachios/فستقی-ئەمریکی.png",         description: "برژاوی تەواو لەگەڵ تامی خوێی سووک.",           bestSeller: true,  featured: false },
-  { id: 3,  name: "فستقی ئەمریکی ترشکراو",               category: "pistachio", price: 20000, image: "images/products/pistachios/فستقی-ئەمریکی-ترش.png",        description: "فستقی ئەمریکی ترشکراو بەتام و خۆش",         bestSeller: false, featured: true },
+  { id: 2,  name: "فستقی ئەمریکی برژاو و خوێدار",       category: "pistachio", price: 22000, image: "images/products/pistachios/فستقی-ئەمریکی.png",         description: "برژاوی تەواو لەگەڵ تامی خوێی سووک.",           bestSeller: true,  featured: false },
+  { id: 3,  name: "فستقی ئەمریکی ترشکراو",               category: "pistachio", price: 22000, image: "images/products/pistachios/فستقی-ئەمریکی-ترش.png",        description: "فستقی ئەمریکی ترشکراو بەتام و خۆش",         bestSeller: false, featured: true },
   { id: 4,  name: "فستقی بندقی",              category: "pistachio", price: 22000, image: "images/products/pistachios/فستقی-بندقی.png",       description: "فستقی بندقی بەتامی عەنتاب تامداری خۆش",          bestSeller: false, featured: false },
   { id: 5,  name: "فستقی بە ناوک",              category: "pistachio", price: 40000, image: "images/products/pistachios/فستقی-ناوک.png",       description: "فستقی بە ناوکی ئێرانی دەرەجە یەک",          bestSeller: false, featured: false },
   { id: 6,  name: "فستق حەبید",              category: "pistachio", price: 6000, image: "images/products/pistachios/فستق-حەبید.jpg",       description: "فستق حەبیدی جامبۆ ی دەرەجە یەک",          bestSeller: false, featured: false },
