@@ -2,6 +2,16 @@
 <html lang="ckb" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <script>
+    // دانانی دۆخی تاریک/ڕووناک پێش بارکردنی CSS بۆ ڕێگریکردن لە چرپەی هەڵە
+    // Set the theme before CSS loads, to avoid a flash of the wrong theme
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch (e) {}
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>پەیوەندی | چەرەساتی رێ دیلان</title>
   <meta name="description" content="پەیوەندیمان پێوە بکە لە ڕێگەی واتساپ، تەلەفۆن، فەیسبووک یان ئینستاگرام.">
@@ -37,7 +47,7 @@
     <div class="container nav-inner">
       <a href="index.html" class="logo">
         <span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ" width="40" height="40"></span>
-        <span>چەرەساتی رێ دیلان</span>
+        <span id="navStoreName">چەرەساتی رێ دیلان</span>
       </a>
       <nav class="nav-links">
         <a href="index.html">ماڵەوە</a>
@@ -46,6 +56,9 @@
         <a href="peywendi.html">پەیوەندی</a>
       </nav>
       <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="گۆڕینی دۆخی تاریک/ڕووناک">
+          <span class="icon-moon" aria-hidden="true">🌙</span><span class="icon-sun" aria-hidden="true">☀️</span>
+        </button>
         <button class="nav-cart-btn open-cart-btn" aria-label="سەبەتەی داواکاری">
           🛒<span class="cart-badge">0</span>
         </button>
@@ -117,7 +130,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand"><span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ" width="40" height="40"></span> چەرەساتی رێ دیلان</div>
+          <div class="footer-brand"><span class="logo-mark"><img src="images/logo-icon.png" alt="لۆگۆ" width="40" height="40"></span> <span id="footerStoreName">چەرەساتی رێ دیلان</span></div>
           <p class="footer-desc">باشترین فستق، کاجو، بادام و بەروبووی وشک بە کوالێتی بەرز و تامی ڕەسەن.</p>
         </div>
         <div>
@@ -145,8 +158,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 چەرەساتی رێ دیلان. هەموو مافێک پارێزراوە.</span>
-        <span>دروستکراوە بە ❤️ لەلایەن <a href="#" id="devCreditLink" target="_blank" rel="noopener noreferrer" class="dev-credit-link">Titan-93Dev</a></span>
+        <span>© 2026 <span id="copyrightStoreName">چەرەساتی رێ دیلان</span>. هەموو مافێک پارێزراوە.</span>
+        <span>دروستکراوە بە ❤️ لەلایەن <a href="https://titan-93.github.io/portfolios/" id="devCreditLink" target="_blank" rel="noopener noreferrer" class="dev-credit-link">Titan-93Dev</a></span>
       </div>
     </div>
   </footer>
