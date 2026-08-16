@@ -104,19 +104,26 @@ const STORE_CONFIG = {
      "label", then add products with that same key in products-data.js.
      To delete a category: remove its line (make sure no product still
      uses that key).
+     بۆ گۆڕینی وێنەی پۆلێک: تەنها ڕێچکەی "image" بگۆڕە بۆ وێنەیەکی تر لە
+     بوخچەی images/products. "icon" وەک هەڵگری جێگرەوە دەمێنێتەوە ئەگەر
+     وێنەکە بار نەبوو.
+
+     To change a category's picture: just change the "image" path to
+     another photo inside images/products. "icon" stays as a fallback
+     emoji in case the image fails to load.
      ----------------------------------------------------------------------- */
   categories: [
-    { key: "pistachio",  label: "فستق",           icon: "🥜" },
-    { key: "raisins",    label: "کشمیش",           icon: "🍇" },
-    { key: "seeds",      label: "تۆو",             icon: "🌻" },
-    { key: "sumac",      label: "سماق",            icon: "🌿" },
-    { key: "mixed",      label: "چەرەسی تێکەلاو",   icon: "🥣" },
-    { key: "cashew",     label: "گازۆ",            icon: "🌰" },
-    { key: "almond",     label: "بادام",           icon: "🌱" },
-    { key: "walnut",     label: "گوێز",            icon: "🌳" },
-    { key: "chickpeas",  label: "نۆک",             icon: "🌕" },
-    { key: "dryfruit",        label: "میوەی وشکراو",     icon: "🍐" },
-    { key: "qazwan",        label: "قەزوان",     icon: "🥦" }
+    { key: "pistachio",  label: "فستق",           icon: "🥜", image: "images/products/pistachios/فستقی-ئەکبەری.png" },
+    { key: "raisins",    label: "کشمیش",           icon: "🍇", image: "images/products/raisins/کشمیشی-زەرد.png" },
+    { key: "seeds",      label: "تۆو",             icon: "🌻", image: "images/products/seeds/تۆی-گوڵەبەرۆژە.png" },
+    { key: "sumac",      label: "سماق",            icon: "🌿", image: "images/products/sumacs/سماقی-وردکراو.png" },
+    { key: "mixed",      label: "چەرەسی تێکەلاو",   icon: "🥣", image: "images/products/mixeds/چەرەساتی-دەرەجە-یەک.png" },
+    { key: "cashew",     label: "گازۆ",            icon: "🌰", image: "images/products/cashews/گازۆی-خاو.png" },
+    { key: "almond",     label: "بادام",           icon: "🫘", image: "images/products/almonds/باوی-خۆمالی-خاو.png" },
+    { key: "walnut",     label: "گوێز",            icon: "🥥", image: "images/products/walnuts/گوێزی-کاکل-ئەمریکی.png" },
+    { key: "chickpeas",  label: "نۆک",             icon: "🫛", image: "images/products/chickpeas/نۆکی-خۆمالی.png" },
+    { key: "dryfruit",        label: "میوەی وشکراو",     icon: "🍑", image: "images/products/dryfruit/قەیسی-ئێرانی.png" },
+    { key: "qazwan",        label: "قەزوان",     icon: "🌾", image: "images/products/qazwan/قەزوانی-درشت.png" }
   ],
 
   /* -----------------------------------------------------------------------
