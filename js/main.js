@@ -167,7 +167,11 @@ function renderHomeSections() {
   if (categoryGrid) {
     categoryGrid.innerHTML = STORE_CONFIG.categories.map(cat => `
       <a href="berhemakan.html?cat=${cat.key}" class="category-card">
-        <span class="category-icon">${cat.icon}</span>
+        <span class="category-icon">
+          <img src="${cat.image}" alt="${cat.label}" loading="lazy"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <span class="category-icon-fallback" aria-hidden="true">${cat.icon}</span>
+        </span>
         <span class="category-label">${cat.label}</span>
       </a>
     `).join("");
@@ -229,7 +233,11 @@ function buildCategoryFilters() {
 
   const allBtn = `<button class="filter-chip active" data-cat="all">هەموو</button>`;
   const chips = STORE_CONFIG.categories.map(cat =>
-    `<button class="filter-chip" data-cat="${cat.key}">${cat.icon} ${cat.label}</button>`
+    `<button class="filter-chip" data-cat="${cat.key}">
+       <img class="filter-chip-icon" src="${cat.image}" alt="" loading="lazy"
+            onerror="this.style.display='none';">
+       ${cat.label}
+     </button>`
   ).join("");
 
   wrap.innerHTML = allBtn + chips;
