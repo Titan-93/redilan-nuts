@@ -120,7 +120,7 @@ const STORE_CONFIG = {
     { key: "mixed",      label: "چەرەسی تێکەلاو",   icon: "🥣", image: "images/products/mixeds/چەرەساتی-دەرەجە-یەک.png" },
     { key: "cashew",     label: "گازۆ",            icon: "🌰", image: "images/products/cashews/گازۆی-خاو.png" },
     { key: "almond",     label: "بادام",           icon: "🫘", image: "images/products/almonds/باوی-خۆمالی-خاو.png" },
-    { key: "walnut",     label: "گوێز",            icon: "🥥", image: "images/products/walnuts/گوێزی-کاکل-ئەمریکی.png" },
+    { key: "walnut",     label: "گوێز",            icon: "🥥", image: "images/products/walnuts/گوێزی-شیلی-دەرەجە-١.jpg" },
     { key: "chickpeas",  label: "نۆک",             icon: "🫛", image: "images/products/chickpeas/نۆکی-خۆمالی.png" },
     { key: "dryfruit",        label: "میوەی وشکراو",     icon: "🍑", image: "images/products/dryfruit/قەیسی-ئێرانی.png" },
     { key: "qazwan",        label: "قەزوان",     icon: "🌾", image: "images/products/qazwan/قەزوانی-درشت.png" }
