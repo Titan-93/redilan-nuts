@@ -88,7 +88,7 @@ const PRODUCTS = [
   { id: 10,  name: "مێوژی خۆمالی دەرەجە سێ",              category: "raisins",   price: 4000, image: "images/products/raisins/مێوژی-خۆمانی-٣.png",       description: "مێوژی خۆمالی بۆ شەربەتی بەتام",              bestSeller: false, featured: false },
    { id: 11, name: "مێوژی سۆر",            category: "raisins",       price: 8000, image: "images/products/raisins/مێوژی-سۆر.png",           description: "مێوژی سۆری ئوزپاکستانی شیرین ی دەرەجە یەک",                 bestSeller: false, featured: false },
   { id: 12,  name: "کشمیشی زەرد",              category: "raisins",   price: 7000, image: "images/products/raisins/کشمیشی-زەرد.png",       description: "کشمیشی زەرد دەرەجە یەک بۆ سەر برنچ و شیرنەمەنی",              bestSeller: false, featured: false },
-  { id: 13,  name: "کشمیشی زەردی خۆمالی",              category: "raisins",   price: 4000, image: "images/products/raisins/کشمیشی-خۆمالی.jpg",       description: "کشمیشی زەرد دەرەجە یەک خۆمالی شیرین",              bestSeller: false, featured: false },
+  { id: 13,  name: "کشمیشی زەردی خۆمالی",              category: "raisins",   price: 5000, image: "images/products/raisins/کشمیشی-خۆمالی.jpg",       description: "کشمیشی زەرد دەرەجە یەک خۆمالی شیرین",              bestSeller: false, featured: false },
   { id: 14,  name: "پونگی خۆمالی",              category: "raisins",   price: 6000, image: "images/products/raisins/پونگی-خۆمانی.png",       description: "پونگی خۆمالی بۆ شەربەت",              bestSeller: false, featured: false },
 
   // ================= تۆو / SEEDS ============================================
