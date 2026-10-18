@@ -139,7 +139,7 @@ const PRODUCTS = [
   { id: 44, name: "هەنجیری وشکی خۆمالی",        category: "dryfruit",       price: 10000, image: "images/products/dryfruit/هەنچەری-خۆمالی.png",       description: "شیرینی سروشتی و نەرمی تایبەت.",               bestSeller: true,  featured: true },
   { id: 45, name: "هەنجیری وشکی لەتک",            category: "dryfruit",       price: 7000, image: "images/products/dryfruit/هەنچیری-لەتک.png",           description: "هەنجیری لەتکی خۆمالی وشکراوی بە تام و شیرین",                 bestSeller: false, featured: false },
   { id: 46, name: "قەیسی تورکی",            category: "dryfruit",       price: 20000, image: "images/products/dryfruit/قەیسی-تورکی.png",           description: "قەیسی تورکی وشکراو دەرەجە یەک ی شیرین",                 bestSeller: false, featured: false },
-  { id: 47, name: "قەیسی ئێرانی",            category: "dryfruit",       price: 6000, image: "images/products/dryfruit/قەیسی-ئێرانی.png",           description: "قەیسی ئێرانی وشکراو مزر بۆ مەرەگە",                 bestSeller: false, featured: false },
+  { id: 47, name: "قەیسی ئێرانی",            category: "dryfruit",       price: 8000, image: "images/products/dryfruit/قەیسی-ئێرانی.png",           description: "قەیسی ئێرانی وشکراو مزر بۆ مەرەگە",                 bestSeller: false, featured: false },
  
   // ================= قەزوان / QAZWAN =========================================
   { id: 48, name: "قەزوانی ورد",        category: "qazwan",       price: 10000, image: "images/products/qazwan/بنەوشە.png",       description: "قەزوانی وردی ناسک بە تام ",               bestSeller: true,  featured: true },
