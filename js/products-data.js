@@ -79,7 +79,7 @@ const PRODUCTS = [
   { id: 3,  name: "فستقی ئەمریکی ترشکراو",               category: "pistachio", price: 28000, image: "images/products/pistachios/فستقی-ئەمریکی-ترش.png",        description: "فستقی ئەمریکی ترشکراو بەتام و خۆش",         bestSeller: false, featured: true },
   { id: 4,  name: "فستقی بندقی",              category: "pistachio", price: 28000, image: "images/products/pistachios/فستقی-بندقی.png",       description: "فستقی بندقی بەتامی عەنتاب تامداری خۆش",          bestSeller: false, featured: false },
   { id: 5,  name: "فستقی بە ناوک",              category: "pistachio", price: 50000, image: "images/products/pistachios/فستقی-ناوک.png",       description: "فستقی بە ناوکی ئێرانی دەرەجە یەک",          bestSeller: false, featured: false },
-  { id: 6,  name: "فستق حەبید",              category: "pistachio", price: 7000, image: "images/products/pistachios/فستق-حەبید.jpg",       description: "فستق حەبیدی جامبۆ ی دەرەجە یەک",          bestSeller: false, featured: false },
+  { id: 6,  name: "فستق حەبید",              category: "pistachio", price: 8000, image: "images/products/pistachios/فستق-حەبید.jpg",       description: "فستق حەبیدی جامبۆ ی دەرەجە یەک",          bestSeller: false, featured: false },
 
   // ================= کشمیش / RAISINS =======================================
   { id: 7,  name: "مێوژی بێ ناوک",                category: "raisins",   price: 10000, image: "images/products/raisins/مێوژی-بێ-ناوک.png",         description: "مێوژی بێ ناوکی وزپاکستانی قەبارە ١٠٠",                     bestSeller: true,  featured: false },
@@ -104,7 +104,7 @@ const PRODUCTS = [
 
   // ================= سماق / SUMAC ==========================================
 
-  { id: 24, name: "سماقی سپی درشت",     category: "sumac",     price: 16000, image: "images/products/sumacs/سماقی-وردکراو.png",        description: "سماقی سپی دنک درشتی ئاکری دەرەجە یەک",                    bestSeller: false, featured: false },
+  { id: 24, name: "سماقی سپی درشت",     category: "sumac",     price: 15000, image: "images/products/sumacs/سماقی-وردکراو.png",        description: "سماقی سپی دنک درشتی ئاکری دەرەجە یەک",                    bestSeller: false, featured: false },
   { id: 25, name: "سماقی ئاکرێ ١",              category: "sumac",     price: 14000,  image: "images/products/sumacs/سماقی-دنک-١.jpg",       description: "سماقی سۆری دنک ی ئاکرێ ترشو بەلە زەت",            bestSeller: false, featured: false },
   { id: 26, name: "سماقی ئاکرێ ٢",               category: "sumac",     price: 13000,  image: "images/products/sumacs/سماقی-دنک-٢.jpg",        description: "سماقی سپی دنک ی ئاکرێ ترش",                 bestSeller: false, featured: false },
   { id: 27, name: "سماقی ئاکرێ ٣",               category: "sumac",     price: 12000,  image: "images/products/sumacs/سماقی-دنک-٣.jpg",        description: "سماقی ترش و بە تام نوێ",                 bestSeller: false, featured: false },
@@ -118,31 +118,35 @@ const PRODUCTS = [
   { id: 31, name: "گازۆی برژاو",               category: "cashew",    price: 18000, image: "images/products/cashews/گازۆی-برژاو.png",        description: "گازۆی برژاوی ١٨٠ بە خوی برژاو نوێ",                   bestSeller: false, featured: true },
 
   // ================= بادام / ALMOND ========================================
-  { id: 32, name: "بادامی خاو ئەمریکی",                 category: "almond",   price: 18000, image: "images/products/almonds/باوی-خاو-ئەمریکی.png",          description: "بادامی ئەمریکی خاو سروشتی و تازە",                       bestSeller: true,  featured: true },
-  { id: 33, name: "بادامی برژاو",               category: "almond",   price: 18000, image: "images/products/almonds/باوی-برژاو.png",        description: "برژاوی تەواو، ترسکە و خۆش.",                  bestSeller: false, featured: false },
-  { id: 34, name: "بادامی سپیکراو",             category: "almond",   price: 18000, image: "images/products/almonds/باوی-سپیکراو.png",      description: "بادەمی سپیکراو بۆ ناو خواردن",               bestSeller: false, featured: false },
+  { id: 32, name: "بادامی خاو ئەمریکی",                 category: "almond",   price: 14000, image: "images/products/almonds/باوی-خاو-ئەمریکی.png",          description: "بادامی ئەمریکی خاو سروشتی و تازە",                       bestSeller: true,  featured: true },
+  { id: 33, name: "بادامی برژاو",               category: "almond",   price: 14000, image: "images/products/almonds/باوی-برژاو.png",        description: "برژاوی تەواو، ترسکە و خۆش.",                  bestSeller: false, featured: false },
+  { id: 34, name: "بادامی سپیکراو",             category: "almond",   price: 16000, image: "images/products/almonds/باوی-سپیکراو.png",      description: "بادەمی سپیکراو بۆ ناو خواردن",               bestSeller: false, featured: false },
   { id: 35, name: "بادەمی خاو خۆمالی",              category: "almond",   price: 20000, image: "images/products/almonds/باوی-خۆمالی-خاو.png",       description: "بادەمی خۆمالی بۆ نەخۆشی چەوری",                  bestSeller: false, featured: false },
-  { id: 36, name: "بادەمی خاو ئیسپانی",              category: "almond",   price: 18000, image: "images/products/almonds/باوی-خاو-ئیسپانی.png",       description: "بادەمی ئیسپانی درشت و گەورە و بەتام",                  bestSeller: false, featured: false },
-  { id: 37, name: "بادەمی بەپەلک",              category: "almond",   price: 4000, image: "images/products/almonds/باوی-بەپەلک.png",       description: "بادەمی بەپەلک ی خۆمالی سروشتی",                  bestSeller: false, featured: false },
+  { id: 36, name: "بادەمی خاو ئیسپانی",              category: "almond",   price: 16000, image: "images/products/almonds/باوی-خاو-ئیسپانی.png",       description: "بادەمی ئیسپانی درشت و گەورە و بەتام",                  bestSeller: false, featured: false },
+  { id: 37, name: "بادەمی تاڵ",              category: "almond",   price: 16000, image: "images/products/almonds/باوی-تاڵ.png",       description: "بادەمی تاڵ خۆمالی بە سوود",                  bestSeller: false, featured: false },
+  { id: 38, name: "بادەمی بەپەلک",              category: "almond",   price: 4000, image: "images/products/almonds/باوی-بەپەلک.png",       description: "بادەمی بەپەلک ی خۆمالی سروشتی",                  bestSeller: false, featured: false },
 
   // ================= گوێز / WALNUT =========================================
-  { id: 38, name: "گوێزی شیلی ١",         category: "walnut",     price: 7000, image: "images/products/walnuts/گوێزی-شیلی-دەرەجە-١.jpg",        description: "گوێزی بە پەلک ی شیلی دنک درشتی بە تام",         bestSeller: true,  featured: true },
-  { id: 39, name: "گوێزی شیلی ٢",      category: "walnut",     price: 6000, image: "images/products/walnuts/گوێزی-شیلی-دەرەجە-٢.jpg",     description: "گوێزی بە پالکی بە تام چوان",            bestSeller: false, featured: false },
-  { id: 40, name: "گوێزی کاکلی سۆر",      category: "walnut",     price: 10000, image: "images/products/walnuts/گوێزی-کاکل-سۆر.jpg",     description: "گوێزی کاکلی سۆر ی شیلی بە تام و چەور",                     bestSeller: false, featured: false },
-  { id: 41, name: "گوێزی کاکلی سپی",       category: "walnut",     price: 14000, image: "images/products/walnuts/گوێزی-کاکل-سپی.jpg",      description: "گوێزی کاکلی شیلی دەرەجە یەک ی بازار",                  bestSeller: false, featured: false },
+  { id: 39, name: "گوێزی شیلی ١",         category: "walnut",     price: 7000, image: "images/products/walnuts/گوێزی-شیلی-دەرەجە-١.jpg",        description: "گوێزی بە پەلک ی شیلی دنک درشتی بە تام",         bestSeller: true,  featured: true },
+  { id: 40, name: "گوێزی شیلی ٢",      category: "walnut",     price: 6000, image: "images/products/walnuts/گوێزی-شیلی-دەرەجە-٢.jpg",     description: "گوێزی بە پالکی بە تام چوان",            bestSeller: false, featured: false },
+  { id: 41, name: "گوێزی کاکلی سۆر",      category: "walnut",     price: 10000, image: "images/products/walnuts/گوێزی-کاکل-سۆر.jpg",     description: "گوێزی کاکلی سۆر ی شیلی بە تام و چەور",                     bestSeller: false, featured: false },
+  { id: 42, name: "گوێزی کاکلی سپی",       category: "walnut",     price: 14000, image: "images/products/walnuts/گوێزی-کاکل-سپی.jpg",      description: "گوێزی کاکلی شیلی دەرەجە یەک ی بازار",                  bestSeller: false, featured: false },
 
   // ================= نۆک / CHICKPEAS =======================================
-  { id: 42, name: "نۆکی نەرمی برژاو",                 category: "chickpeas", price: 5000,  image: "images/products/chickpeas/نۆکی-نەرم.png",           description: "برژاوی تەواو و نەرمی خۆش",                       bestSeller: true,  featured: false },
-  { id: 43, name: "نۆکی خۆمالی",                category: "chickpeas", price: 5000,  image: "images/products/chickpeas/نۆکی-خۆمالی.png",          description: "نۆکی خۆمالی برژاوی بە خوێ بە تام",                     bestSeller: false, featured: false },
+  { id: 43, name: "نۆکی نەرمی برژاو",                 category: "chickpeas", price: 5000,  image: "images/products/chickpeas/نۆکی-نەرم.png",           description: "برژاوی تەواو و نەرمی خۆش",                       bestSeller: true,  featured: false },
+  { id: 44, name: "نۆکی خۆمالی",                category: "chickpeas", price: 5000,  image: "images/products/chickpeas/نۆکی-خۆمالی.png",          description: "نۆکی خۆمالی برژاوی بە خوێ بە تام",                     bestSeller: false, featured: false },
 
   // ================= میوەی وشکراو / DRY FRUIT =================================
-  { id: 44, name: "هەنجیری وشکی خۆمالی",        category: "dryfruit",       price: 10000, image: "images/products/dryfruit/هەنچەری-خۆمالی.png",       description: "شیرینی سروشتی و نەرمی تایبەت.",               bestSeller: true,  featured: true },
-  { id: 45, name: "هەنجیری وشکی لەتک",            category: "dryfruit",       price: 7000, image: "images/products/dryfruit/هەنچیری-لەتک.png",           description: "هەنجیری لەتکی خۆمالی وشکراوی بە تام و شیرین",                 bestSeller: false, featured: false },
-  { id: 46, name: "قەیسی تورکی",            category: "dryfruit",       price: 20000, image: "images/products/dryfruit/قەیسی-تورکی.png",           description: "قەیسی تورکی وشکراو دەرەجە یەک ی شیرین",                 bestSeller: false, featured: false },
-  { id: 47, name: "قەیسی ئێرانی",            category: "dryfruit",       price: 8000, image: "images/products/dryfruit/قەیسی-ئێرانی.png",           description: "قەیسی ئێرانی وشکراو مزر بۆ مەرەگە",                 bestSeller: false, featured: false },
+  { id: 45, name: "هەنجیری وشکی خۆمالی",        category: "dryfruit",       price: 10000, image: "images/products/dryfruit/هەنچەری-خۆمالی.png",       description: "شیرینی سروشتی و نەرمی تایبەت.",               bestSeller: true,  featured: true },
+  { id: 46, name: "هەنجیری وشکی لەتک",            category: "dryfruit",       price: 7000, image: "images/products/dryfruit/هەنچیری-لەتک.png",           description: "هەنجیری لەتکی خۆمالی وشکراوی بە تام و شیرین",                 bestSeller: false, featured: false },
+  { id: 47, name: "قەیسی تورکی",            category: "dryfruit",       price: 20000, image: "images/products/dryfruit/قەیسی-تورکی.png",           description: "قەیسی تورکی وشکراو دەرەجە یەک ی شیرین",                 bestSeller: false, featured: false },
+  { id: 48, name: "قەیسی ئێرانی",            category: "dryfruit",       price: 8000, image: "images/products/dryfruit/قەیسی-ئێرانی.png",           description: "قەیسی ئێرانی وشکراو مزر بۆ مەرەگە",                 bestSeller: false, featured: false },
  
   // ================= قەزوان / QAZWAN =========================================
-  { id: 48, name: "قەزوانی ورد",        category: "qazwan",       price: 10000, image: "images/products/qazwan/بنەوشە.png",       description: "قەزوانی وردی ناسک بە تام ",               bestSeller: true,  featured: true },
-  { id: 49, name: "قەزوانی درشت",            category: "qazwan",       price: 8000, image: "images/products/qazwan/قەزوانی-درشت.png",           description: "قەزوانی درشت ی جوان بۆ قاوە",                 bestSeller: false, featured: false }
+  { id: 49, name: "قەزوانی ورد",        category: "qazwan",       price: 10000, image: "images/products/qazwan/بنەوشە.png",       description: "قەزوانی وردی ناسک بە تام ",               bestSeller: true,  featured: true },
+  { id: 50, name: "قەزوانی درشت",            category: "qazwan",       price: 8000, image: "images/products/qazwan/قەزوانی-درشت.png",           description: "قەزوانی درشت ی جوان بۆ قاوە",                 bestSeller: false, featured: false },
+
+   // ================= سیسی/ sisi =========================================
+  { id: 49, name: "ناوکە کەنگر",        category: "sisi",       price: 30000, image: "images/products/sisi/سیسی.png",       description: "ناوکە کەنگر سیسی خۆمالی برژاو بە خوێ بە تام",               bestSeller: true,  featured: true }
 
 ];
