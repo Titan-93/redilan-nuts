@@ -118,9 +118,9 @@ const PRODUCTS = [
   { id: 31, name: "گازۆی برژاو",               category: "cashew",    price: 18000, image: "images/products/cashews/گازۆی-برژاو.png",        description: "گازۆی برژاوی ١٨٠ بە خوی برژاو نوێ",                   bestSeller: false, featured: true },
 
   // ================= بادام / ALMOND ========================================
-  { id: 32, name: "بادامی خاو ئەمریکی",                 category: "almond",   price: 14000, image: "images/products/almonds/باوی-خاو-ئەمریکی.png",          description: "بادامی ئەمریکی خاو سروشتی و تازە",                       bestSeller: true,  featured: true },
-  { id: 33, name: "بادامی برژاو",               category: "almond",   price: 14000, image: "images/products/almonds/باوی-برژاو.png",        description: "برژاوی تەواو، ترسکە و خۆش.",                  bestSeller: false, featured: false },
-  { id: 34, name: "بادامی سپیکراو",             category: "almond",   price: 16000, image: "images/products/almonds/باوی-سپیکراو.png",      description: "بادەمی سپیکراو بۆ ناو خواردن",               bestSeller: false, featured: false },
+  { id: 32, name: "بادەمی خاو ئەمریکی",                 category: "almond",   price: 14000, image: "images/products/almonds/باوی-خاو-ئەمریکی.png",          description: "بادامی ئەمریکی خاو سروشتی و تازە",                       bestSeller: true,  featured: true },
+  { id: 33, name: "بادەمی برژاو",               category: "almond",   price: 14000, image: "images/products/almonds/باوی-برژاو.png",        description: "برژاوی تەواو، ترسکە و خۆش.",                  bestSeller: false, featured: false },
+  { id: 34, name: "بادەمی سپیکراو",             category: "almond",   price: 16000, image: "images/products/almonds/باوی-سپیکراو.png",      description: "بادەمی سپیکراو بۆ ناو خواردن",               bestSeller: false, featured: false },
   { id: 35, name: "بادەمی خاو خۆمالی",              category: "almond",   price: 20000, image: "images/products/almonds/باوی-خۆمالی-خاو.png",       description: "بادەمی خۆمالی بۆ نەخۆشی چەوری",                  bestSeller: false, featured: false },
   { id: 36, name: "بادەمی خاو ئیسپانی",              category: "almond",   price: 16000, image: "images/products/almonds/باوی-خاو-ئیسپانی.png",       description: "بادەمی ئیسپانی درشت و گەورە و بەتام",                  bestSeller: false, featured: false },
   { id: 37, name: "بادەمی تاڵ",              category: "almond",   price: 16000, image: "images/products/almonds/باوی-تاڵ.png",       description: "بادەمی تاڵ خۆمالی بە سوود",                  bestSeller: false, featured: false },
