@@ -79,7 +79,7 @@ const PRODUCTS = [
   { id: 3,  name: "فستقی ئەمریکی ترشکراو",               category: "pistachio", price: 28000, image: "images/products/pistachios/فستقی-ئەمریکی-ترش.png",        description: "فستقی ئەمریکی ترشکراو بەتام و خۆش",         bestSeller: false, featured: true },
   { id: 4,  name: "فستقی بندقی",              category: "pistachio", price: 28000, image: "images/products/pistachios/فستقی-بندقی.png",       description: "فستقی بندقی بەتامی عەنتاب تامداری خۆش",          bestSeller: false, featured: false },
   { id: 5,  name: "فستقی بە ناوک",              category: "pistachio", price: 50000, image: "images/products/pistachios/فستقی-ناوک.png",       description: "فستقی بە ناوکی ئێرانی دەرەجە یەک",          bestSeller: false, featured: false },
-  { id: 6,  name: "فستق حەبید",              category: "pistachio", price: 8000, image: "images/products/pistachios/فستق-حەبید.jpg",       description: "فستق حەبیدی جامبۆ ی دەرەجە یەک",          bestSeller: false, featured: false },
+  { id: 6,  name: "فستق حەبید",              category: "pistachio", price: 6000, image: "images/products/pistachios/فستق-حەبید.jpg",       description: "فستق حەبیدی جامبۆ ی دەرەجە یەک",          bestSeller: false, featured: false },
 
   // ================= کشمیش / RAISINS =======================================
   { id: 7,  name: "مێوژی بێ ناوک",                category: "raisins",   price: 10000, image: "images/products/raisins/مێوژی-بێ-ناوک.png",         description: "مێوژی بێ ناوکی وزپاکستانی قەبارە ١٠٠",                     bestSeller: true,  featured: false },
@@ -110,7 +110,7 @@ const PRODUCTS = [
   { id: 27, name: "سماقی ئاکرێ ٣",               category: "sumac",     price: 12000,  image: "images/products/sumacs/سماقی-دنک-٣.jpg",        description: "سماقی ترش و بە تام نوێ",                 bestSeller: false, featured: false },
   
   // ================= چەرەسی تێکەلاو/ MIXED NUTS ============================
-  { id: 28, name: "چەرەساتی دەرەجە یەک",         category: "mixed",     price: 20000, image: "images/products/mixeds/چەرەساتی-دەرەجە-یەک.png",        description: "چەرەساتی دەرەجە یەک پێک دێ لە سێ بابەت فستق گازۆ باوی",         bestSeller: true,  featured: true },
+  { id: 28, name: "چەرەساتی دەرەجە یەک",         category: "mixed",     price: 24000, image: "images/products/mixeds/چەرەساتی-دەرەجە-یەک.png",        description: "چەرەساتی دەرەجە یەک پێک دێ لە سێ بابەت فستق گازۆ باوی",         bestSeller: true,  featured: true },
   { id: 29, name: "چەرەساتی دەرەجە دوو",      category: "mixed",     price: 16000, image: "images/products/mixeds/چەرەساتی-دەرەجە-دوو.png",     description: "چەرەساتی دەرەجە دوو پێک دێ لە پێنچ بابەت فستق و گازۆ و باوی و حەبیەد و تۆوی کودی سپی",            bestSeller: false, featured: false },
 
   // ================= کاجو / CASHEW ==========================================
